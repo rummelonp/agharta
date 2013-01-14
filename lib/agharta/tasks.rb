@@ -39,16 +39,29 @@ module Agharta
     class Edit < Thor::Group
       Tasks.register self
 
+      include Thor::Actions
+
       def self.banner
         "#{basename} [recipe]"
       end
 
       desc 'open or edit recipe'
 
-      argument :recipe, :optional => true
+      argument :recipe_name, :optional => true
+
+      def validate
+        unless recipe_name
+          self.class.help(shell)
+          exit 0
+        end
+      end
+
+      def setup
+        empty_directory(Agharta.recipe_dir) unless File.exists?(Agharta.recipe_dir)
+      end
 
       def edit
-        puts 'Not Implemented Yet.'
+        run "#{Agharta.editor} #{Agharta.find_recipe(recipe_name)}"
       end
     end
 
