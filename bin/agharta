@@ -6,4 +6,4 @@ $:.unshift lib unless $:.include? lib
 
 require 'agharta'
 
-Agharta::CLI.start ARGV
+Agharta::Tasks::Cli.start(ARGV)
