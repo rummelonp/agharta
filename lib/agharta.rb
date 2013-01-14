@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+
 require "agharta/version"
 
 module Agharta
-  # Your code goes here...
+  module CLI
+    def self.start(args)
+      puts "Hello, Agharta!"
+    end
+  end
 end
