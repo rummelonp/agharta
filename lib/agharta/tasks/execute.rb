@@ -5,10 +5,6 @@ module Agharta
     class Execute < Thor::Group
       Tasks.register self
 
-      include Thor::Actions
-
-      source_root Agharta.home
-
       def self.banner
         'agharta execute [recipe]'
       end
@@ -30,7 +26,7 @@ module Agharta
       end
 
       def execute
-        apply @recipe
+        load @recipe
       end
     end
   end

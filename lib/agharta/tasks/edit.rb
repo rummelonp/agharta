@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
+require 'fileutils'
+
 module Agharta
   module Tasks
     class Edit < Thor::Group
       Tasks.register self
-
-      include Thor::Actions
 
       def self.banner
         'agharta edit [recipe]'
@@ -21,12 +21,12 @@ module Agharta
           exit 0
         end
         unless File.exists?(Agharta.recipe_dir)
-          empty_directory(Agharta.recipe_dir)
+          FileUtils.mkdir_p(Agharta.recipe_dir)
         end
       end
 
       def edit
-        run "#{Agharta.editor} #{Agharta.find_recipe(recipe_name)}"
+        system Agharta.editor, Agharta.find_recipe(recipe_name)
       end
     end
   end
