@@ -9,24 +9,22 @@ module Agharta
         'agharta execute [recipe]'
       end
 
+      include Agharta::Tasks::Actions
+
       desc 'execute recipe'
 
       argument :recipe_name, :optional => true
 
       def setup
-        unless recipe_name
-          self.class.help(shell)
-          exit 0
-        end
-        @recipe = Agharta.find_recipe(recipe_name)
-        unless File.exists?(@recipe)
-          say "No such recipe \"#{recipe_name}\""
-          exit 1
+        exit_with_help unless recipe_name
+        @recipe_path = env.recipe_path(recipe_name)
+        unless File.exists?(@recipe_path)
+          exit_with_error "No such recipe \"#{recipe_name}\""
         end
       end
 
       def execute
-        load @recipe
+        load @recipe_path
       end
     end
   end

@@ -14,6 +14,7 @@ module Agharta
   end
 end
 
+require 'agharta/tasks/actions'
 require 'agharta/tasks/cli'
 require 'agharta/tasks/edit'
 require 'agharta/tasks/execute'

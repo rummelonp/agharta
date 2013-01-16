@@ -11,22 +11,21 @@ module Agharta
         'agharta edit [recipe]'
       end
 
+      include Agharta::Tasks::Actions
+
       desc 'open or edit recipe'
 
       argument :recipe_name, :optional => true
 
       def setup
-        unless recipe_name
-          self.class.help(shell)
-          exit 0
-        end
-        unless File.exists?(Agharta.recipe_dir)
-          FileUtils.mkdir_p(Agharta.recipe_dir)
+        exit_with_help unless recipe_name
+        unless File.exists?(env.recipe_root)
+          FileUtils.mkdir_p(env.recipe_root)
         end
       end
 
       def edit
-        system Agharta.editor, Agharta.find_recipe(recipe_name)
+        system env.editor, env.recipe_path(recipe_name)
       end
     end
   end

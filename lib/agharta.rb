@@ -3,6 +3,6 @@
 require 'agharta/version'
 
 module Agharta
-  require 'agharta/helper'
+  require 'agharta/environment'
   require 'agharta/tasks'
 end
