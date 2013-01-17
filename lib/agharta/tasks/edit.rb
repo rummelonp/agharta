@@ -5,7 +5,7 @@ require 'fileutils'
 module Agharta
   module Tasks
     class Edit < Thor::Group
-      Tasks.register self
+      Agharta::Tasks.register self
 
       def self.banner
         'agharta edit [recipe]'

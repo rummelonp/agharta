@@ -19,7 +19,7 @@ module Agharta
 
       def setup
         task_name = ARGV.shift.to_s.downcase
-        @task = Tasks.mappings[task_name]
+        @task = Agharta::Tasks.mappings[task_name]
         exit_with_help unless @task
       end
 
