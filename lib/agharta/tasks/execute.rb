@@ -24,7 +24,7 @@ module Agharta
       end
 
       def execute
-        load @recipe_path
+        Agharta::Recipe.new(@recipe_path).execute
       end
     end
   end
