@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_runtime_dependency 'thor', '~> 0.16'
+  gem.add_runtime_dependency 'userstream', '~> 1.2'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
