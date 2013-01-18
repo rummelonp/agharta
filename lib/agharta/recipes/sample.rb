@@ -4,13 +4,17 @@ require 'logger'
 require 'userstream'
 
 module Agharta
-  module Commands
+  module Recipes
     module Sample
-      Agharta::Commands.register self
+      Recipes.register self
 
       def sample(&block)
-        Process.fork do
-          Sample::Client.new(&block).run!
+        if block_given?
+          Process.fork do
+            Client.new(&block).run!
+          end
+        else
+          Client.new
         end
       end
 
@@ -21,7 +25,7 @@ module Agharta
         attr_accessor :oauth_token_secret
 
         def initialize(&block)
-          instance_eval(&block)
+          instance_eval(&block) if block_given?
         end
 
         def set(key, value)

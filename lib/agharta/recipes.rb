@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 module Agharta
-  module Commands
+  module Recipes
     def self.register(klass)
       include(klass)
     end
   end
 end
 
-require 'agharta/commands/sample'
+require 'agharta/recipes/sample'

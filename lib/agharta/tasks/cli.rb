@@ -7,7 +7,7 @@ module Agharta
         'agharta [task]'
       end
 
-      include Agharta::Tasks::Actions
+      include Actions
 
       def self.desc
         tasks = "Tasks:\n"
@@ -19,8 +19,8 @@ module Agharta
 
       def setup
         task_name = ARGV.shift.to_s.downcase
-        @task = Agharta::Tasks.mappings[task_name]
-        exit_with_help unless @task
+        @task = Tasks.mappings[task_name]
+        help unless @task
       end
 
       def boot

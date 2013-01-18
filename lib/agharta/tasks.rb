@@ -9,11 +9,13 @@ module Agharta
     end
 
     def self.register(klass)
-      mappings[klass.name.split('::').last.downcase] = klass
+      task_name = klass.name.split('::').last.downcase
+      mappings[task_name] = klass
     end
   end
 end
 
+require 'agharta/tasks/environment'
 require 'agharta/tasks/actions'
 require 'agharta/tasks/cli'
 require 'agharta/tasks/edit'

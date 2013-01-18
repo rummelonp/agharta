@@ -2,14 +2,14 @@
 
 module Agharta
   class Recipe
-    include Agharta::Commands
+    include Recipes
 
-    def initialize(recipe_path)
-      @recipe_path = recipe_path
+    def self.execute(recipe_name)
+      new.execute(recipe_name)
     end
 
-    def execute
-      eval(File.read(@recipe_path), binding)
+    def execute(recipe_path)
+      eval(File.read(recipe_path), binding)
       Process.waitall
     end
   end
