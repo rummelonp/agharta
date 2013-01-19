@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 require 'logger'
-require 'userstream'
+require 'tweetstream'
 
 module Agharta
   module Recipes
@@ -41,7 +41,7 @@ module Agharta
         end
 
         def client
-          UserStream::Client.new(credentials)
+          TweetStream::Client.new(credentials)
         end
 
         def run!

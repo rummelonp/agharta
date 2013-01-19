@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_runtime_dependency 'thor', '~> 0.16'
-  gem.add_runtime_dependency 'userstream', '~> 1.2'
+  gem.add_runtime_dependency 'tweetstream', '~> 2.4'
 
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'simplecov'
