@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'userstream', '~> 1.2'
 
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'simplecov'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
