@@ -20,6 +20,10 @@ module Agharta
       @recipes_root ||= File.join(root, 'recipes')
     end
 
+    def assets_root
+      @assets_root ||= File.dirname(__FILE__) + '/../../assets'
+    end
+
     def editor
       @editor ||= ENV['EDITOR'] || 'vi'
     end
@@ -45,8 +49,18 @@ module Agharta
       {}
     end
 
-    def build_recipe_path(recipe_name)
-      File.join(recipes_root, recipe_name)
+    def build_recipe_path(recipe_name, base_dir = recipes_root)
+      File.join(base_dir, recipe_name)
+    end
+
+    def find_recipe(recipe_name)
+      [recipes_root, assets_root].each do |base_dir|
+        recipe_path = build_recipe_path(recipe_name, base_dir)
+        if File.exists?(recipe_path)
+          return recipe_path
+        end
+      end
+      nil
     end
   end
 end
