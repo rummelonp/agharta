@@ -3,7 +3,7 @@
 module Agharta
   module Tasks
     class Cat < Thor::Group
-      Tasks.register self
+      Tasks.register :cat, self
 
       def self.banner
         'agharta cat [recipe]'

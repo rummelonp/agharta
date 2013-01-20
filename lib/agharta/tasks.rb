@@ -8,9 +8,8 @@ module Agharta
       @mappings ||= {}
     end
 
-    def self.register(klass)
-      task_name = klass.name.split('::').last.downcase
-      mappings[task_name] = klass
+    def self.register(task_name, klass)
+      mappings[task_name.to_s] = klass
     end
   end
 end

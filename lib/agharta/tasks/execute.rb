@@ -3,7 +3,7 @@
 module Agharta
   module Tasks
     class Execute < Thor::Group
-      Tasks.register self
+      Tasks.register :execute, self
 
       def self.banner
         'agharta execute [recipe]'
