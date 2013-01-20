@@ -8,4 +8,4 @@ module Agharta
   end
 end
 
-require 'agharta/recipes/sample'
+require 'agharta/recipes/user_stream'
