@@ -1,0 +1,63 @@
+#compdef agharta
+
+_agharta() {
+    if (( CURRENT > 2 )); then
+        (( CURRENT-- ))
+        shift words
+        _call_function 1 $(echo _agharta_${words[1]} | sed 's/:/_/')
+    else
+        _values \
+            "agharta tasks" \
+            "user\:add[add new user]" \
+            "user\:list[show user list]" \
+            "edit[open or edit recipe]" \
+            "cat[cat recipe]" \
+            "execute[execute recipe]"
+    fi
+}
+
+__agharta_user_recipes() {
+    if (( $#AGHARTA_HOME > 0 )); then
+        _agharta_home=$AGHARTA_HOME
+    else
+        _agharta_home=$HOME/.agharta
+    fi
+
+    if [ -d $_agharta_home/recipes ]; then
+        _agharta_user_recipes=($(ls -1 $_agharta_home/recipes))
+    else
+        _agharta_user_recipes=()
+    fi
+
+    _describe -t agharta_user_recipe "recipe" _agharta_user_recipes
+}
+
+__agharta_example_recipes() {
+    _agharta_assets=$(dirname $(which agharta))/../assets
+    _agharta_example_recipes=($(ls -1 $_agharta_assets/example))
+
+    _describe -t agharta_example_recipe "example recipe" _agharta_example_recipes -P 'example/'
+}
+
+_agharta_user_add() {
+    _message "no more arguments"
+}
+
+_agharta_user_list() {
+    _message "no more arguments"
+}
+
+_agharta_edit() {
+    _arguments \
+        ":recipe:__agharta_user_recipes"
+}
+
+_agharta_cat() {
+    _arguments \
+        ":recipes: _alternative __agharta_user_recipes __agharta_example_recipes"
+}
+
+_agharta_execute() {
+    _arguments \
+        ":recipes: _alternative __agharta_user_recipes __agharta_example_recipes"
+}
