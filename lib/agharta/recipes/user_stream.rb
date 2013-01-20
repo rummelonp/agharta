@@ -6,15 +6,15 @@ module Agharta
       Recipes.register self
 
       def stream(&block)
-        Stream.start(&block)
+        Stream.start(self, &block)
       end
 
       def filter(&block)
-        Filter.start(&block)
+        Filter.start(self, &block)
       end
 
       def sample(&block)
-        Sample.start(&block)
+        Sample.start(self, &block)
       end
     end
   end

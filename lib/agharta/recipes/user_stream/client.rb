@@ -7,30 +7,18 @@ module Agharta
   module Recipes
     module UserStream
       class Client
-        attr_accessor :consumer_key
-        attr_accessor :consumer_secret
-        attr_accessor :oauth_token
-        attr_accessor :oauth_token_secret
+        include Configuration
 
-        def self.start(&block)
-          client = new(&block)
+        def self.start(context, &block)
+          client = new(context, &block)
           Process.fork { client.start } if block_given?
           client
         end
 
-        def initialize(&block)
+        def initialize(context, &block)
+          @context = context
+          set(@context.credentials)
           instance_eval(&block) if block_given?
-        end
-
-        def set(*args)
-          if args.first.is_a?(Hash)
-            args.first.each do |k, v|
-              send("#{k}=", v)
-            end
-          else
-            key, value = *args
-            send("#{key}=", value)
-          end
         end
 
         def params
@@ -50,15 +38,6 @@ module Agharta
         end
 
         private
-        def credentials
-          {
-            :consumer_key       => consumer_key,
-            :consumer_secret    => consumer_secret,
-            :oauth_token        => oauth_token,
-            :oauth_token_secret => oauth_token_secret,
-          }
-        end
-
         def tweetstream
           TweetStream::Client.new(credentials)
         end

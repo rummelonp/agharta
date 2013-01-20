@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-require 'agharta/tasks/environment'
-
 module Agharta
   module Tasks
     module Actions
       def env
-        @env ||= Environment
+        @env ||= Environment.instance
       end
 
       def help

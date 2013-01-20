@@ -14,7 +14,6 @@ module Agharta
   end
 end
 
-require 'agharta/tasks/environment'
 require 'agharta/tasks/actions'
 require 'agharta/tasks/cli'
 require 'agharta/tasks/user_add'
