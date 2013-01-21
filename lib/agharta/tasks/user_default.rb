@@ -28,12 +28,9 @@ module Agharta
           say "No such user \"#{user_name}\""
         else
           @users[:default] = user_name.to_sym
+          YAML.dump(@config, open(env.config_path, 'w'))
+          say "Set #{user_name} to default"
         end
-      end
-
-      def teardown
-        YAML.dump(@config, open(env.config_path, 'w'))
-        say "Set #{user_name} to default"
       end
     end
   end
