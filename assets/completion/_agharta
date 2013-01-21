@@ -10,6 +10,7 @@ _agharta() {
             "agharta tasks" \
             "user\:add[add new user]" \
             "user\:list[show user list]" \
+            "console[start console]" \
             "edit[open or edit recipe]" \
             "cat[cat recipe]" \
             "execute[execute recipe]"
@@ -44,6 +45,10 @@ _agharta_user_add() {
 }
 
 _agharta_user_list() {
+    _message "no more arguments"
+}
+
+_agharta_console() {
     _message "no more arguments"
 }
 
