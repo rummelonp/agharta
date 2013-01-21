@@ -27,7 +27,7 @@ module Agharta
 
       def credentials(screen_name = nil)
         if screen_name.nil?
-          if build_credentials.nil?
+          if build_credentials.values.compact.empty?
             default_credentials
           else
             build_credentials
