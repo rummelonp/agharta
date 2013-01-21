@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_runtime_dependency 'thor', '~> 0.16'
+  gem.add_runtime_dependency 'pry', '~> 0.9'
   gem.add_runtime_dependency 'oauth', '~> 0.4'
   gem.add_runtime_dependency 'twitter', '~> 4.4'
   gem.add_runtime_dependency 'tweetstream', '~> 2.4'
