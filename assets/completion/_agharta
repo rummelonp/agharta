@@ -9,6 +9,7 @@ _agharta() {
         _values \
             "agharta tasks" \
             "user\:add[add new user]" \
+            "user\:default[change default user]" \
             "user\:list[show user list]" \
             "console[start console]" \
             "edit[open or edit recipe]" \
@@ -40,8 +41,19 @@ __agharta_example_recipes() {
     _describe -t agharta_example_recipe "example recipe" _agharta_example_recipes -P 'example/'
 }
 
+__agharta_users() {
+    _agharta_users=($(agharta user:list | grep -v -E '(\(\d+ users\)|No users)' | sed 's/\*//g'))
+
+    _describe -t agharta_users "user" _agharta_users
+}
+
 _agharta_user_add() {
     _message "no more arguments"
+}
+
+_agharta_user_default() {
+    _arguments \
+        ":user:__agharta_users"
 }
 
 _agharta_user_list() {
@@ -59,10 +71,10 @@ _agharta_edit() {
 
 _agharta_cat() {
     _arguments \
-        ":recipes: _alternative __agharta_user_recipes __agharta_example_recipes"
+        ":recipe: _alternative __agharta_user_recipes __agharta_example_recipes"
 }
 
 _agharta_execute() {
     _arguments \
-        ":recipes: _alternative __agharta_user_recipes __agharta_example_recipes"
+        ":recipe: _alternative __agharta_user_recipes __agharta_example_recipes"
 }
