@@ -17,6 +17,7 @@ end
 require 'agharta/tasks/actions'
 require 'agharta/tasks/cli'
 require 'agharta/tasks/user_add'
+require 'agharta/tasks/user_default'
 require 'agharta/tasks/user_list'
 require 'agharta/tasks/console'
 require 'agharta/tasks/edit'
