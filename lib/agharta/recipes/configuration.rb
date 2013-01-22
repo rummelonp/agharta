@@ -58,7 +58,7 @@ module Agharta
           if screen_name == :default
             default_credentials
           else
-            env.config[:twitter][screen_name]
+            env.config[:twitter][screen_name] || {}
           end
         ).select { |k, v| respond_to?("#{k}=") }
         set(credentials)
