@@ -49,7 +49,8 @@ module Agharta
       def default_credentials
         users = env.config[:twitter]
         screen_name = users[:default]
-        users[screen_name]
+        credentials = users[screen_name] || {}
+        credentials.select { |k, v| respond_to?("#{k}=") }
       end
 
       def set_credentials(screen_name)
