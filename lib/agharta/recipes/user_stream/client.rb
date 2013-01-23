@@ -17,7 +17,7 @@ module Agharta
 
         def initialize(context, &block)
           @context = context
-          set(@context.credentials)
+          set(@context.options)
           instance_eval(&block) if block_given?
         end
 

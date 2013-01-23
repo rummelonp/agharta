@@ -5,10 +5,14 @@ module Agharta
     module Configuration
       Recipes.register self
 
-      attr_accessor :consumer_key
-      attr_accessor :consumer_secret
-      attr_accessor :oauth_token
-      attr_accessor :oauth_token_secret
+      OPTIONS_KEY = [
+        :consumer_key,
+        :consumer_secret,
+        :oauth_token,
+        :oauth_token_secret,
+      ].freeze
+
+      attr_accessor *OPTIONS_KEY
 
       def env
         @env ||= Environment.instance
@@ -23,6 +27,14 @@ module Agharta
           key, value = *args
           send("#{key}=", value)
         end
+      end
+
+      def options
+        options = {}
+        OPTIONS_KEY.each do |key|
+          options[key] = send(key)
+        end
+        options
       end
 
       def credentials(screen_name = nil)
@@ -54,14 +66,14 @@ module Agharta
       end
 
       def set_credentials(screen_name)
-        credentials = (
+        set(
           if screen_name == :default
             default_credentials
           else
-            env.config[:twitter][screen_name] || {}
+            credentials = env.config[:twitter][screen_name] || {}
+            credentials.select { |k, v| respond_to?("#{k}=") }
           end
-        ).select { |k, v| respond_to?("#{k}=") }
-        set(credentials)
+        )
       end
     end
   end
