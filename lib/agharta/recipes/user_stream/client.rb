@@ -8,6 +8,8 @@ module Agharta
     module UserStream
       class Client
         include Configuration
+        include Handlers
+        include Hooks
 
         def self.start(context, &block)
           client = new(context, &block)
@@ -25,12 +27,8 @@ module Agharta
           @params ||= {}
         end
 
-        def loggers
-          @loggers ||= []
-        end
-
-        def log(log)
-          loggers << Logger.new(log)
+        def hooks
+          @hooks ||= []
         end
 
         def start
@@ -43,14 +41,7 @@ module Agharta
         end
 
         def on_status(status)
-          loggers.each do |logger|
-            next unless status.user
-            logger.info [
-              status.created_at,
-              status.user.screen_name,
-              status.text,
-            ].join(' ')
-          end
+          hooks.each { |h| h.call(status) }
         end
       end
     end

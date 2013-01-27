@@ -20,6 +20,7 @@ module Agharta
   end
 end
 
+require 'agharta/recipes/user_stream/hooks'
 require 'agharta/recipes/user_stream/client'
 require 'agharta/recipes/user_stream/stream'
 require 'agharta/recipes/user_stream/filter'
