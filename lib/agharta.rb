@@ -5,5 +5,8 @@ module Agharta
   require 'agharta/environment'
   require 'agharta/tasks'
   require 'agharta/recipes'
+  require 'agharta/configuration'
+  require 'agharta/handlers'
+  require 'agharta/user_stream'
   require 'agharta/recipe'
 end

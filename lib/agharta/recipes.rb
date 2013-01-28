@@ -7,7 +7,3 @@ module Agharta
     end
   end
 end
-
-require 'agharta/recipes/configuration'
-require 'agharta/recipes/handlers'
-require 'agharta/recipes/user_stream'

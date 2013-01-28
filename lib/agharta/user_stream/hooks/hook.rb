@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 module Agharta
-  module Recipes
-    module Handlers
-      class Handler
-        include Configuration
+  module UserStream
+    module Hooks
+      class Hook
+        include Handlers
 
         def initialize(context, *args, &block)
           # do something...

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 module Agharta
-  module Recipes
-    module Handlers
-      class Log < Handler
+  module UserStream
+    module Hooks
+      class Keyword < Hook
       end
     end
   end

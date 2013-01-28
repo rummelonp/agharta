@@ -1,10 +1,9 @@
-
 # -*- coding: utf-8 -*-
 
 module Agharta
-  module Recipes
-    module Handlers
-      class Store < Handler
+  module UserStream
+    module Hooks
+      class User < Hook
       end
     end
   end

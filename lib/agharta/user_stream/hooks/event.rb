@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 module Agharta
-  module Recipes
-    module Handlers
-      class Notify < Handler
+  module UserStream
+    module Hooks
+      class Event < Hook
       end
     end
   end

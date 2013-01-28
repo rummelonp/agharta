@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+
 module Agharta
-  module Recipes
     module UserStream
       module Hooks
         def hooks
@@ -27,9 +27,8 @@ module Agharta
       end
     end
   end
-end
 
-require 'agharta/recipes/user_stream/hooks/hook'
-require 'agharta/recipes/user_stream/hooks/keyword'
-require 'agharta/recipes/user_stream/hooks/user'
-require 'agharta/recipes/user_stream/hooks/event'
+require 'agharta/user_stream/hooks/hook'
+require 'agharta/user_stream/hooks/keyword'
+require 'agharta/user_stream/hooks/user'
+require 'agharta/user_stream/hooks/event'
