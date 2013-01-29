@@ -102,7 +102,7 @@ describe Agharta::Configuration do
           @config.set(@other_credentials)
           @config.should_receive(:build_credentials)
             .at_least(:once)
-            .and_return(@other_credentials)
+            .and_call_original
         end
 
         it 'should call #build_credentials' do
