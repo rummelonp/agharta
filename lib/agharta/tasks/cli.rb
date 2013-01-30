@@ -4,7 +4,7 @@ module Agharta
   module Tasks
     class Cli < Thor::Group
       def self.banner
-        'agharta [task]'
+        'agharta [task or recipe]'
       end
 
       include Actions
@@ -18,9 +18,13 @@ module Agharta
       end
 
       def setup
-        task_name = ARGV.shift.to_s.downcase
-        @task = Tasks.mappings[task_name]
-        help unless @task
+        help if ARGV.empty?
+        @task = Tasks.mappings[ARGV.first.to_s.downcase]
+        if @task
+          ARGV.delete_at(0)
+        else
+          @task = Agharta::Tasks::Execute
+        end
       end
 
       def boot

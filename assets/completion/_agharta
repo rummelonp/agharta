@@ -6,16 +6,24 @@ _agharta() {
         shift words
         _call_function 1 $(echo _agharta_${words[1]} | sed 's/:/_/')
     else
-        _values \
-            "agharta tasks" \
-            "user\:add[add new user]" \
-            "user\:default[change default user]" \
-            "user\:list[show user list]" \
-            "console[start console]" \
-            "edit[open or edit recipe]" \
-            "cat[cat recipe]" \
-            "execute[execute recipe]"
+        _arguments \
+            ":*: _alternative __agharta_tasks __agharta_user_recipes __agharta_example_recipes"
     fi
+}
+
+__agharta_tasks() {
+   _agharta_tasks=(
+       "task"
+       "user\:add[add new user]"
+       "user\:default[change default user]"
+       "user\:list[show user list]"
+       "console[start console]"
+       "edit[open or edit recipe]"
+       "cat[cat recipe]"
+       "execute[execute recipe]"
+   )
+
+   _values $_agharta_tasks
 }
 
 __agharta_user_recipes() {
