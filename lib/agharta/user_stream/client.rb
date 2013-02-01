@@ -42,6 +42,7 @@ module Agharta
 
       def on_status(status)
         hooks.each { |h| h.call(status) }
+        handlers.each { |h| h.call(status) }
       end
     end
   end
