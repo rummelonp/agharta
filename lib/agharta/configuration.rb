@@ -2,7 +2,7 @@
 
 module Agharta
   module Configuration
-    Recipes.register self
+    Recipe.register self
 
     OPTIONS_KEY = [
       :consumer_key,

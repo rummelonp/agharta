@@ -2,7 +2,9 @@
 
 module Agharta
   class Recipe
-    include Recipes
+    def self.register(klass)
+      include(klass)
+    end
 
     def self.execute(recipe_name)
       new.execute(recipe_name)

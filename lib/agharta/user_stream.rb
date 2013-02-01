@@ -2,7 +2,7 @@
 
 module Agharta
   module UserStream
-    Recipes.register self
+    Recipe.register self
 
     def stream(&block)
       Stream.start(self, &block)
