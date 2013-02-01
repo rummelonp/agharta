@@ -4,16 +4,16 @@ module Agharta
   module UserStream
     Recipe.register self
 
-    def stream(&block)
-      Stream.start(self, &block)
+    def stream(options = {}, &block)
+      Stream.start(self, options, &block)
     end
 
-    def filter(&block)
-      Filter.start(self, &block)
+    def filter(options = {}, &block)
+      Filter.start(self, options, &block)
     end
 
-    def sample(&block)
-      Sample.start(self, &block)
+    def sample(options = {}, &block)
+      Sample.start(self, options, &block)
     end
   end
 end

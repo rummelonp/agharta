@@ -10,15 +10,16 @@ module Agharta
       include Handlers
       include Hooks
 
-      def self.start(context, &block)
-        client = new(context, &block)
+      def self.start(context, options = {}, &block)
+        client = new(context, options, &block)
         Process.fork { client.start } if block_given?
         client
       end
 
-      def initialize(context, &block)
+      def initialize(context, options = {}, &block)
         @context = context
         set(@context.options)
+        params.merge!(options)
         instance_eval(&block) if block_given?
       end
 
