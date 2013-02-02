@@ -16,7 +16,7 @@ module Agharta
       end
 
       def start
-        tweetstream.filter(params, &method(:on_status))
+        connection.filter(params)
       end
     end
   end

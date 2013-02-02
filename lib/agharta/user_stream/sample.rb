@@ -4,7 +4,7 @@ module Agharta
   module UserStream
     class Sample < Client
       def start
-        tweetstream.sample(&method(:on_status))
+        connection.sample
       end
     end
   end

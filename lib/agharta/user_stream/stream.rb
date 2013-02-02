@@ -32,7 +32,7 @@ module Agharta
       end
 
       def start
-        tweetstream.userstream(params.merge(:method => :post), &method(:on_status))
+        connection.userstream(params.merge(:method => :post))
       end
     end
   end
