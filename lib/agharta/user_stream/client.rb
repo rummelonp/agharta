@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-require 'logger'
 require 'tweetstream'
 
 module Agharta
@@ -64,19 +63,19 @@ module Agharta
       end
 
       def on_error(message)
-        @logger.error message
+        logger.error message
       end
 
       def on_unauthorized
-        @logger.error 'Unuahtorized'
+        logger.error 'Unuahtorized'
       end
 
       def on_reconnect(timeout, retries)
-        @logger.error "Reconnect: timeout/#{timeout}, retries/#{retries}"
+        logger.error "Reconnect: timeout/#{timeout}, retries/#{retries}"
       end
 
       def on_no_data_received
-        @logger.info "No Data Received"
+        logger.info "No Data Received"
       end
     end
   end
