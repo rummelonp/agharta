@@ -7,7 +7,7 @@ module Agharta
     class Log < Handler
       def initialize(context, *args, &block)
         device = args.first
-        device = context.env.build_log_path(device) unless device.is_a?(IO)
+        device = context.env.build_data_path(device) unless device.is_a?(IO)
         options = args.last.is_a?(Hash) ? args.last : {}
         shift_age = options.fetch(:shift_age, 0)
         shift_size = options.fetch(:shift_size, 1048576)

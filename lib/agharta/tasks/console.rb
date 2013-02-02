@@ -16,6 +16,7 @@ module Agharta
       desc 'start console'
 
       def setup
+        env.empty_directory(:data_root)
         env.empty_directory(:logs_root)
       end
 
