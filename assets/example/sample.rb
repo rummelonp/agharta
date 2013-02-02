@@ -10,4 +10,5 @@ sample {
   credentials :default
 
   log STDOUT
+  log 'sample.log'
 }

@@ -10,4 +10,5 @@ stream {
   credentials :default
 
   log STDOUT
+  log 'stream.log'
 }

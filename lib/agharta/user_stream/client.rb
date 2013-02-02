@@ -23,8 +23,12 @@ module Agharta
         instance_eval(&block) if block_given?
       end
 
+      def name
+        "#{@context.name}.#{self.class.to_s.split('::').last.downcase}"
+      end
+
       def log_path
-        @log_path ||= env.build_log_path("#{@context.name}.log")
+        @log_path ||= env.build_log_path("#{name}.log")
       end
 
       def logger
