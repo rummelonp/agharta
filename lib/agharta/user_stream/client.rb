@@ -23,15 +23,16 @@ module Agharta
       end
 
       def name
-        "#{@context.name}.#{self.class.to_s.split('::').last.downcase}"
+        self.class.to_s.split('::').last.downcase
       end
 
       def log_path
-        @log_path ||= env.build_log_path("#{name}.log")
+        @log_path ||= env.build_log_path("#{@context.name}.log")
       end
 
       def logger
         @logger ||= MultiLogger.new($stdout, log_path)
+          .tap { |l| l.progname = name }
       end
 
       def params
