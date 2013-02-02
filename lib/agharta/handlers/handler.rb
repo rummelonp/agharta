@@ -3,8 +3,6 @@
 module Agharta
   module Handlers
     class Handler
-      include Configuration
-
       def initialize(context, *args, &block)
         # do something...
       end
