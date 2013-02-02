@@ -21,6 +21,7 @@ module Agharta
         unless @recipe_path
           error "No such recipe \"#{recipe_name}\""
         end
+        env.empty_directory(:logs_root)
       end
 
       def execute

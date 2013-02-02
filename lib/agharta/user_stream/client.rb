@@ -17,11 +17,18 @@ module Agharta
       end
 
       def initialize(context, options = {}, &block)
-        @logger = Logger.new($stdout)
         @context = context
         set(@context.options)
         params.merge!(options)
         instance_eval(&block) if block_given?
+      end
+
+      def log_path
+        @log_path ||= env.build_log_path("#{@context.name}.log")
+      end
+
+      def logger
+        @logger ||= MultiLogger.new($stdout, log_path)
       end
 
       def params

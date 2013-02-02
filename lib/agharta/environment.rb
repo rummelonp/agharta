@@ -20,6 +20,10 @@ module Agharta
       @recipes_root ||= File.join(root, 'recipes')
     end
 
+    def logs_root
+      @logs_root ||= File.join(root, 'logs')
+    end
+
     def assets_root
       @assets_root ||= File.dirname(__FILE__) + '/../../assets'
     end
@@ -61,6 +65,10 @@ module Agharta
         end
       end
       nil
+    end
+
+    def build_log_path(log_name)
+      File.join(logs_root, log_name)
     end
   end
 end

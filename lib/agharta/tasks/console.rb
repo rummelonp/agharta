@@ -11,7 +11,13 @@ module Agharta
         'agharta console'
       end
 
+      include Actions
+
       desc 'start console'
+
+      def setup
+        env.empty_directory(:logs_root)
+      end
 
       def console
         Pry.start(Recipe.new('console'))
