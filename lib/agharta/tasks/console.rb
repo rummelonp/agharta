@@ -14,7 +14,7 @@ module Agharta
       desc 'start console'
 
       def console
-        Pry.start(Recipe.new)
+        Pry.start(Recipe.new('console'))
       end
     end
   end

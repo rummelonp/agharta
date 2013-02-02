@@ -6,12 +6,21 @@ module Agharta
       include(klass)
     end
 
-    def self.execute(recipe_name)
-      new.execute(recipe_name)
+    def self.execute(recipe_path)
+      new(recipe_path).send(:execute)
     end
 
-    def execute(recipe_path)
-      eval(File.read(recipe_path), binding)
+    attr_reader :name
+    attr_reader :path
+
+    def initialize(recipe_path)
+      @name = File.basename(recipe_path)
+      @path = recipe_path
+    end
+
+    private
+    def execute
+      eval(File.read(path), binding)
       Process.waitall
     end
   end
