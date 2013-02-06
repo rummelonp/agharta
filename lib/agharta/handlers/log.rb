@@ -16,7 +16,7 @@ module Agharta
       end
 
       # TODO: format
-      def call(status)
+      def call(status, options = {})
         if status[:user] && status[:text]
           @logger.info status[:user][:screen_name] + ' ' + status[:text]
         end

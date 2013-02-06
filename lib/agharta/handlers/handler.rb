@@ -7,7 +7,7 @@ module Agharta
         # do something...
       end
 
-      def call(status)
+      def call(status, options = {})
         # do something...
       end
     end

@@ -13,6 +13,10 @@ module Agharta
         def call(status)
           # do something...
         end
+
+        def name
+          self.class.to_s.split('::').last.downcase
+        end
       end
     end
   end
