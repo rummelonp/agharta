@@ -7,11 +7,11 @@ module Agharta
         include Handlers
 
         def initialize(context, *args, &block)
-          # do something...
+          raise NotImplementedError
         end
 
         def call(status)
-          # do something...
+          raise NotImplementedError
         end
 
         def name

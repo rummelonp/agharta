@@ -4,11 +4,11 @@ module Agharta
   module Handlers
     class Handler
       def initialize(context, *args, &block)
-        # do something...
+        raise NotImplementedError
       end
 
       def call(status, options = {})
-        # do something...
+        raise NotImplementedError
       end
     end
   end
