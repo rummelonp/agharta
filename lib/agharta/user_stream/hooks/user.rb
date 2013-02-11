@@ -16,11 +16,7 @@ module Agharta
           return unless status[:user]
           user = status[:user][:screen_name]
           if @all || @include.flatten.any? { |u| user == u }
-            options = {
-              :type => :user,
-              :user => user
-            }
-            handlers.each { |h| h.call(status, options) }
+            invoke(status, :type => :user, :user => user)
           end
         end
 

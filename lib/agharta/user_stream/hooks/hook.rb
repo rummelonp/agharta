@@ -17,6 +17,11 @@ module Agharta
         def name
           self.class.to_s.split('::').last.downcase
         end
+
+        private
+        def invoke(status, options = {})
+          handlers.each { |h| h.call(status, options) }
+        end
       end
     end
   end

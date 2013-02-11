@@ -19,11 +19,7 @@ module Agharta
           return unless @include.flatten.any? { |k| status[:text].match(k) }
           keyword = $&.to_s
           return if @exclude.flatten.any? { |k| status[:text].match(k) }
-          options = {
-            :type    => :keyword,
-            :keyword => keyword
-          }
-          handlers.each { |h| h.call(status, options) }
+          invoke(status, :type => :keyword, :keyword => keyword)
         end
 
         def include(*keywords)

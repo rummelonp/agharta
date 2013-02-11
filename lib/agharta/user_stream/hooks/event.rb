@@ -25,11 +25,7 @@ module Agharta
             return
           end
           return unless @on.include?(event)
-          options = {
-            :type => :event,
-            :event => event
-          }
-          handlers.each { |h| h.call(status, options) }
+          invoke(status, :type => :event, :event => event)
         end
 
         def on(*events)
