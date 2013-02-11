@@ -10,6 +10,7 @@ module Agharta
           @exclude     = options.fetch(:exclude,     [])
           @ignore_self = options.fetch(:ignore_self, false)
           @include.concat(args)
+          handlers.concat(context.handlers)
           instance_eval &block if block_given?
         end
 

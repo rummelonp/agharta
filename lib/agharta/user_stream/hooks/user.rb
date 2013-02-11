@@ -9,6 +9,7 @@ module Agharta
           @include = options.fetch(:include, [])
           @all     = options.fetch(:all,     false)
           @include.concat(args)
+          handlers.concat(context.handlers)
           instance_eval &block if block_given?
         end
 

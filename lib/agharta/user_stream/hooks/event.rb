@@ -9,6 +9,7 @@ module Agharta
           @on          = options.fetch(:on,          [])
           @ignore_self = options.fetch(:ignore_self, false)
           @on.concat(args)
+          handlers.concat(context.handlers)
           instance_eval &block if block_given?
         end
 
