@@ -8,22 +8,21 @@ module Agharta
       @handlers ||= []
     end
 
-    def store(*args, &block)
-      handler = Store.new(self, *args, &block)
+    def handler(handler)
       handlers << handler
       handler
+    end
+
+    def store(*args, &block)
+      handler Store.new(self, *args, &block)
     end
 
     def log(*args, &block)
-      handler = Log.new(self, *args, &block)
-      handlers << handler
-      handler
+      handler Log.new(self, *args, &block)
     end
 
     def notify(*args, &block)
-      handler = Notify.new(self, *args, &block)
-      handlers << handler
-      handler
+      handler Notify.new(self, *args, &block)
     end
   end
 end

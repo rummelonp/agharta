@@ -7,22 +7,21 @@ module Agharta
         @hooks ||= []
       end
 
-      def keyword(*args, &block)
-        hook = Keyword.new(self, *args, &block)
+      def hook(hook)
         hooks << hook
         hook
+      end
+
+      def keyword(*args, &block)
+        hook Keyword.new(self, *args, &block)
       end
 
       def user(*args, &block)
-        hook = User.new(self, *args, &block)
-        hooks << hook
-        hook
+        hook User.new(self, *args, &block)
       end
 
       def event(*args, &block)
-        hook = Event.new(self, *args, &block)
-        hooks << hook
-        hook
+        hook Event.new(self, *args, &block)
       end
     end
   end
