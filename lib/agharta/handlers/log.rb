@@ -15,11 +15,9 @@ module Agharta
         @logger.progname = context.name
       end
 
-      # TODO: format
       def call(status, options = {})
-        if status[:user] && status[:text]
-          @logger.info status[:user][:screen_name] + ' ' + status[:text]
-        end
+        data = Formatter.call(status, options)
+        @logger.info "#{data[:title]}: #{data[:message]}"
       end
     end
   end
