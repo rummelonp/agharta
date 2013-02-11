@@ -60,7 +60,6 @@ module Agharta
 
       def on_anything(status)
         hooks.each { |h| h.call(status) }
-        handlers.each { |h| h.call(status) }
       end
 
       def on_error(message)
