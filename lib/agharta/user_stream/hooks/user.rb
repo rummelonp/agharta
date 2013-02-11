@@ -8,6 +8,7 @@ module Agharta
           options = args.last.is_a?(Hash) ? args.pop : {}
           @include = options.fetch(:include, [])
           @all     = options.fetch(:all,     false)
+          @include.concat(args)
           instance_eval &block if block_given?
         end
 
