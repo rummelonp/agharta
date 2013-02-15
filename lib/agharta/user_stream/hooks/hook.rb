@@ -4,6 +4,7 @@ module Agharta
   module UserStream
     module Hooks
       class Hook
+        include Context
         include Handlers
 
         def initialize(context, *args, &block)
@@ -12,10 +13,6 @@ module Agharta
 
         def call(status)
           raise NotImplementedError
-        end
-
-        def name
-          self.class.to_s.split('::').last.downcase
         end
 
         private

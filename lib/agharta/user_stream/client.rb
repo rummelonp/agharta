@@ -5,6 +5,7 @@ require 'tweetstream'
 module Agharta
   module UserStream
     class Client
+      include Context
       include Configuration
       include Handlers
       include Hooks
@@ -14,10 +15,6 @@ module Agharta
         set(@context.options)
         params.merge!(options)
         instance_eval(&block) if block_given?
-      end
-
-      def name
-        self.class.to_s.split('::').last.downcase
       end
 
       def log_path

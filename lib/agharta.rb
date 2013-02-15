@@ -3,6 +3,7 @@
 module Agharta
   require 'agharta/version'
   require 'agharta/status_formatter'
+  require 'agharta/context'
   require 'agharta/multi_logger'
   require 'agharta/environment'
   require 'agharta/tasks'
