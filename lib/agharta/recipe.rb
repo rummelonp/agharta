@@ -7,7 +7,7 @@ module Agharta
     end
 
     def self.execute(recipe_path)
-      new(recipe_path).send(:execute)
+      new(recipe_path).execute
     end
 
     attr_reader :name
@@ -18,9 +18,13 @@ module Agharta
       @path = recipe_path
     end
 
-    private
     def execute
-      eval(File.read(path), binding)
+      if File.exists?(path)
+        eval(File.read(path), binding)
+      end
+      clients.each do |client|
+        Process.fork { client.start }
+      end
       Process.waitall
     end
   end

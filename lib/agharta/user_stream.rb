@@ -4,16 +4,25 @@ module Agharta
   module UserStream
     Recipe.register self
 
+    def clients
+      @clients ||= []
+    end
+
+    def client(client)
+      clients << client
+      client
+    end
+
     def stream(options = {}, &block)
-      Stream.start(self, options, &block)
+      client Stream.new(self, options, &block)
     end
 
     def filter(options = {}, &block)
-      Filter.start(self, options, &block)
+      client Filter.new(self, options, &block)
     end
 
     def sample(options = {}, &block)
-      Sample.start(self, options, &block)
+      client Sample.new(self, options, &block)
     end
   end
 end
