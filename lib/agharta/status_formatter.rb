@@ -1,6 +1,6 @@
 
 module Agharta
-  module Formatter
+  module StatusFormatter
     def self.mappings
       @mappings ||= {}
     end

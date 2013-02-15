@@ -16,7 +16,7 @@ module Agharta
       end
 
       def call(status, options = {})
-        data = Formatter.call(status, options)
+        data = StatusFormatter.call(status, options)
         @logger.info "#{data[:title]}: #{data[:message]}"
       end
     end
