@@ -11,114 +11,124 @@ module Agharta
 
     def self.call(status, options = {})
       type = options[:type].to_s
-      formatter = mappings[type] || mappings['default']
+      formatter = mappings[type] || mappings[:default]
       formatter.call(status, options)
     end
 
-    status_message = lambda do |status|
-      "#{status[:text]} from #{status[:source].gsub(/<\/?[^>]*>/, '')}"
+    module Helper
+      def self.status_text_with_source(status)
+        "#{status[:text]} from #{status[:source].gsub(/<\/?[^>]*>/, '')}"
+      end
     end
 
-    status_formatter = lambda do |status, options|
-      {
-        :title => "@#{status[:user][:screen_name]} Say",
-        :message => status_message.(status),
-      }
-    end
+    module Default
+      StatusFormatter.register :default, self
+      StatusFormatter.register :user, self
 
-    register :default, status_formatter
-
-    register :user, status_formatter
-
-    register :keyword, lambda { |status, options|
-      {
-        :title => "@#{status[:user][:screen_name]} Say \"#{options[:keyword]}\"",
-        :message => status_message.(status),
-      }
-    }
-
-    register :event, lambda { |status, options|
-      event = options[:event].to_s
-      formatter = mappings[event]
-      if formatter
-        formatter.call(status, options)
-      else
-        message = "Not Supported Event \"#{event}\""
+      def self.call(status, options)
         {
-          :title => message,
-          :message => message,
+          :title => "@#{status[:user][:screen_name]} Say",
+          :message => Helper.status_text_with_source(status),
         }
       end
-    }
+    end
 
-    register :reply, lambda { |status, options|
-      {
-        :title => "@#{status[:user][:screen_name]} Mentioned",
-        :message => status_message.(status),
-      }
-    }
+    module Keyword
+      StatusFormatter.register :keyword, self
 
-    register :retweet, lambda { |status, options|
-      {
-        :title => "@#{status[:user][:screen_name]} Retweeted",
-        :message => status_message.(status[:retweeted_status]),
-      }
-    }
+      def self.call(status, options)
+        {
+          :title => "@#{status[:user][:screen_name]} Say \"#{options[:keyword]}\"",
+          :message => Helper.status_text_with_source(status),
+        }
+      end
+    end
 
-    register :direct_message, lambda { |status, options|
-      {
-        :title => "@#{status[:direct_message][:sender][:screen_name]} Sent message",
-        :message => status[:direct_message][:text],
-      }
-    }
+    module Event
+      StatusFormatter.register :event, self
 
-    register :favorite, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Favorited",
-        :message => status[:target_object][:text],
-      }
-    }
+      def self.call(status, options)
+        event = options[:event]
+        if respond_to?(event)
+          send(event, status, options)
+        else
+          message = "Not Supported Event \"#{event}\""
+          {
+            :title => message,
+            :message => message,
+          }
+        end
+      end
 
-    register :unfavorite, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Unfavorited",
-        :message => status[:target_object][:text],
-      }
-    }
+      def self.reply(status, options)
+        {
+          :title => "@#{status[:user][:screen_name]} Mentioned",
+          :message => Helper.status_text_with_source(status),
+        }
+      end
 
-    register :follow, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Followed",
-        :message => "@#{status[:target][:screen_name]}",
-      }
-    }
+      def self.retweet(status, options)
+        {
+          :title => "@#{status[:user][:screen_name]} Retweeted",
+          :message => Helper.status_text_with_source(status[:retweeted_status]),
+        }
+      end
 
-    register :list_member_added, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Added to list",
-        :message => status[:target_object][:full_name],
-      }
-    }
+      def self.direct_message(status, options)
+        {
+          :title => "@#{status[:direct_message][:sender][:screen_name]} Sent message",
+          :message => status[:direct_message][:text],
+        }
+      end
 
-    register :list_member_removed, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Removed from list",
-        :message => status[:target_object][:full_name],
-      }
-    }
+      def self.favorite(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Favorited",
+          :message => status[:target_object][:text],
+        }
+      end
 
-    register :list_user_subscribed, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Subscribed list",
-        :message => status[:target_object][:full_name],
-      }
-    }
+      def self.unfavorite(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Unfavorited",
+          :message => status[:target_object][:text],
+        }
+      end
 
-    register :list_user_unsubscribed, lambda { |status, options|
-      {
-        :title => "@#{status[:source][:screen_name]} Unsubscribed list",
-        :message => status[:target_object][:full_name],
-      }
-    }
+      def self.follow(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Followed",
+          :message => "@#{status[:target][:screen_name]}",
+        }
+      end
+
+      def self.list_member_added(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Added to list",
+          :message => status[:target_object][:full_name],
+        }
+      end
+
+      def self.list_member_removed(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Removed from list",
+          :message => status[:target_object][:full_name],
+        }
+      end
+
+      def self.list_user_subscribed(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Subscribed list",
+          :message => status[:target_object][:full_name],
+        }
+      end
+
+      def self.list_user_unsubscribed(status, options)
+        {
+          :title => "@#{status[:source][:screen_name]} Unsubscribed list",
+          :message => status[:target_object][:full_name],
+        }
+      end
+    end
   end
 end
