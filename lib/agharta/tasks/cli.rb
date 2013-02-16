@@ -19,7 +19,7 @@ module Agharta
 
       def setup
         help if ARGV.empty?
-        @task = Tasks.mappings[ARGV.first.to_s.downcase]
+        @task = Tasks.mappings[ARGV.first.to_s.downcase.to_sym]
         if @task
           ARGV.delete_at(0)
         else

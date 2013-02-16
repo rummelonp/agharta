@@ -6,11 +6,11 @@ module Agharta
     end
 
     def self.register(formatter_name, klass)
-      mappings[formatter_name.to_s] = klass
+      mappings[formatter_name.to_sym] = klass
     end
 
     def self.call(status, options = {})
-      type = options[:type].to_s
+      type = options[:type].to_sym
       formatter = mappings[type] || mappings[:default]
       formatter.call(status, options)
     end

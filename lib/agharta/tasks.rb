@@ -9,7 +9,7 @@ module Agharta
     end
 
     def self.register(task_name, klass)
-      mappings[task_name.to_s] = klass
+      mappings[task_name.to_sym] = klass
     end
   end
 end
