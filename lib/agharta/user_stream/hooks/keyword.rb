@@ -12,10 +12,10 @@ module Agharta
           super
         end
 
-        # TODO: implement ignore self
         def call(status)
           return unless status[:text]
           return unless status[:user]
+          return if @ignore_self && current_user?(status[:user][:screen_name])
           return unless @include.flatten.any? { |k| status[:text].match(k) }
           keyword = $&.to_s
           return if @exclude.flatten.any? { |k| status[:text].match(k) }
