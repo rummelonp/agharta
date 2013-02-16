@@ -12,11 +12,8 @@ module Agharta
 
     def self.find(store_name)
       store = mappings[store_name.to_s]
-      raise NotFound, "No such store \"#{store_name}\"" unless store
+      raise ArgumentError, "No such store \"#{store_name}\"" unless store
       store
-    end
-
-    class NotFound < StandardError
     end
   end
 end

@@ -12,11 +12,8 @@ module Agharta
 
     def self.find(notify_name)
       store = mappings[notify_name.to_s]
-      raise NotFound, "No such notify \"#{notify_name}\"" unless store
+      raise ArgumentError, "No such notify \"#{notify_name}\"" unless store
       store
-    end
-
-    class NotFound < StandardError
     end
   end
 end
