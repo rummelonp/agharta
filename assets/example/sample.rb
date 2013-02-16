@@ -9,10 +9,9 @@ end
 sample {
   credentials :default
 
-  log STDOUT
-  log 'sample.log'
-
   user {
     all!
+    log STDOUT
+    log 'sample.log'
   }
 }

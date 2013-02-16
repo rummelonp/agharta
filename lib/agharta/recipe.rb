@@ -8,7 +8,6 @@ module Agharta
 
     register Executable
     register Configuration
-    register Handlers
     register UserStream
 
     def self.execute(recipe_path)

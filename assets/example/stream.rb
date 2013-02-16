@@ -9,11 +9,10 @@ end
 stream {
   credentials :default
 
-  log STDOUT
-  log 'stream.log'
-
   user {
     all!
+    log STDOUT
+    log 'stream.log'
   }
 
   event {
@@ -24,5 +23,7 @@ stream {
     on :follow
     on :list_member_added
     on :list_user_subscribed
+    log STDOUT
+    log 'stream.log'
   }
 }

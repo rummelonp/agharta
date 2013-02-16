@@ -8,7 +8,6 @@ module Agharta
       include Executable
       include Context
       include Configuration
-      include Handlers
       include Hooks
 
       def initialize(context, options = {}, &block)

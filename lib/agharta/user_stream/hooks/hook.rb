@@ -8,7 +8,6 @@ module Agharta
         include Handlers
 
         def initialize(context, *args, &block)
-          handlers.concat(context.handlers)
           if block_given?
             if block.arity > 0
               handler(block)
