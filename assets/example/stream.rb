@@ -11,4 +11,18 @@ stream {
 
   log STDOUT
   log 'stream.log'
+
+  user {
+    all!
+  }
+
+  event {
+    on :reply
+    on :retweet
+    on :direct_message
+    on :favorite
+    on :follow
+    on :list_member_added
+    on :list_user_subscribed
+  }
 }

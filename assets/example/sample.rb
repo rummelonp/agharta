@@ -11,4 +11,8 @@ sample {
 
   log STDOUT
   log 'sample.log'
+
+  user {
+    all!
+  }
 }
