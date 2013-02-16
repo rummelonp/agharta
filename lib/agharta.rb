@@ -2,6 +2,7 @@
 
 module Agharta
   require 'agharta/version'
+  require 'agharta/errors'
   require 'agharta/core_ext'
   require 'agharta/status_formatter'
   require 'agharta/context'
