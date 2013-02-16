@@ -2,8 +2,6 @@
 
 module Agharta
   module Handlers
-    Recipe.register self
-
     def handlers
       @handlers ||= []
     end

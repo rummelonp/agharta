@@ -5,6 +5,7 @@ require 'tweetstream'
 module Agharta
   module UserStream
     class Client
+      include Executable
       include Context
       include Configuration
       include Handlers
@@ -34,11 +35,11 @@ module Agharta
         @hooks ||= []
       end
 
-      def start
-        raise NotImplementedError
+      private
+      def invoke(status)
+        hooks.each { |h| h.call(status) }
       end
 
-      private
       def connection
         connection = TweetStream::Client.new(credentials)
         connection.on_anything(&method(:on_anything))
@@ -50,7 +51,7 @@ module Agharta
       end
 
       def on_anything(status)
-        hooks.each { |h| h.call(status) }
+        invoke(status)
       end
 
       def on_error(message)

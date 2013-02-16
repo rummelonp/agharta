@@ -6,6 +6,11 @@ module Agharta
       include(klass)
     end
 
+    register Executable
+    register Configuration
+    register Handlers
+    register UserStream
+
     def self.execute(recipe_path)
       new(recipe_path).execute
     end
@@ -22,8 +27,8 @@ module Agharta
       if File.exists?(path)
         eval(File.read(path), binding)
       end
-      clients.each do |client|
-        Process.fork { client.start }
+      executables.each do |executable|
+        Process.fork { executable.execute }
       end
       Process.waitall
     end

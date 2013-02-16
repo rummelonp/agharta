@@ -7,8 +7,9 @@ module Agharta
   require 'agharta/multi_logger'
   require 'agharta/environment'
   require 'agharta/tasks'
-  require 'agharta/recipe'
+  require 'agharta/executable'
   require 'agharta/configuration'
   require 'agharta/handlers'
   require 'agharta/user_stream'
+  require 'agharta/recipe'
 end

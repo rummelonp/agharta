@@ -31,7 +31,7 @@ module Agharta
         with(:followings)
       end
 
-      def start
+      def execute
         connection.userstream(params.merge(:method => :post))
       end
     end

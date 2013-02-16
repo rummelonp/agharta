@@ -3,7 +3,7 @@
 module Agharta
   module UserStream
     class Sample < Client
-      def start
+      def execute
         connection.sample
       end
     end

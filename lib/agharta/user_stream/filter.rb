@@ -15,7 +15,7 @@ module Agharta
         params[:follow] = args.join(',')
       end
 
-      def start
+      def execute
         connection.filter(params)
       end
     end
