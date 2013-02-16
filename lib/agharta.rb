@@ -11,6 +11,8 @@ module Agharta
   require 'agharta/executable'
   require 'agharta/configuration'
   require 'agharta/handlers'
+  require 'agharta/stores'
+  require 'agharta/notifies'
   require 'agharta/user_stream'
   require 'agharta/recipe'
 end
