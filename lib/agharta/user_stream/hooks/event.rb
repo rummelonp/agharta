@@ -5,6 +5,9 @@ module Agharta
     module Hooks
       class Event < Hook
         EVENT_NAMES = [
+          :reply,
+          :retweet,
+          :direct_message,
           :block,
           :unblock,
           :favorite,
@@ -29,16 +32,20 @@ module Agharta
           super
         end
 
-        # TODO: implement reply
         # TODO: implement ifnore self
         def call(status)
           event = nil
           if status[:event]
+            return if current_user?(status[:source][:screen_name])
             event = status[:event].to_sym
-          elsif status[:direct_message]
-            event = :direct_message
+          elsif current_user?(status[:in_reply_to_screen_name])
+            event = :reply
           elsif status[:retweeted_status]
+            return unless current_user?(status[:retweeted_status][:user][:screen_name])
             event = :retweet
+          elsif status[:direct_message]
+            return if current_user?(status[:direct_message][:sender_screen_name])
+            event = :direct_message
           else
             return
           end

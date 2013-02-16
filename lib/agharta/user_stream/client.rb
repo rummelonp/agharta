@@ -34,6 +34,10 @@ module Agharta
         @hooks ||= []
       end
 
+      def current_user
+        @current_user ||= Twitter::Client.new(credentials).verify_credentials
+      end
+
       private
       def invoke(status)
         hooks.each { |h| h.call(status) }

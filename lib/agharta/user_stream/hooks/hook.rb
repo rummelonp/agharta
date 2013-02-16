@@ -8,6 +8,7 @@ module Agharta
         include Handlers
 
         def initialize(context, *args, &block)
+          @context = context
           if block_given?
             if block.arity > 0
               handler(block)
@@ -24,6 +25,14 @@ module Agharta
         private
         def invoke(status, options = {})
           handlers.each { |h| h.call(status, options) }
+        end
+
+        def current_user
+          @context.current_user
+        end
+
+        def current_user?(screen_name)
+          current_user[:screen_name] == screen_name
         end
       end
     end
