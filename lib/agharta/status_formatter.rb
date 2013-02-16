@@ -62,70 +62,70 @@ module Agharta
 
       def self.reply(status, options)
         {
-          :title => "@#{status[:user][:screen_name]} Mentioned",
+          :title => "@#{status[:user][:screen_name]} mentioned",
           :message => Helper.status_text_with_source(status),
         }
       end
 
       def self.retweet(status, options)
         {
-          :title => "@#{status[:user][:screen_name]} Retweeted",
+          :title => "@#{status[:user][:screen_name]} retweeted",
           :message => Helper.status_text_with_source(status[:retweeted_status]),
         }
       end
 
       def self.direct_message(status, options)
         {
-          :title => "@#{status[:direct_message][:sender][:screen_name]} Sent message",
+          :title => "@#{status[:direct_message][:sender_screen_name]} sent @#{status[:direct_message][:recipient_screen_name]} a message",
           :message => status[:direct_message][:text],
         }
       end
 
       def self.favorite(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Favorited",
+          :title => "@#{status[:source][:screen_name]} favorited",
           :message => status[:target_object][:text],
         }
       end
 
       def self.unfavorite(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Unfavorited",
+          :title => "@#{status[:source][:screen_name]} unfavorited",
           :message => status[:target_object][:text],
         }
       end
 
       def self.follow(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Followed",
+          :title => "@#{status[:source][:screen_name]} followed",
           :message => "@#{status[:target][:screen_name]}",
         }
       end
 
       def self.list_member_added(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Added to list",
+          :title => "@#{status[:source][:screen_name]} added to the list",
           :message => status[:target_object][:full_name],
         }
       end
 
       def self.list_member_removed(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Removed from list",
+          :title => "@#{status[:source][:screen_name]} removed from the list",
           :message => status[:target_object][:full_name],
         }
       end
 
       def self.list_user_subscribed(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Subscribed list",
+          :title => "@#{status[:source][:screen_name]} subscribed to your list",
           :message => status[:target_object][:full_name],
         }
       end
 
       def self.list_user_unsubscribed(status, options)
         {
-          :title => "@#{status[:source][:screen_name]} Unsubscribed list",
+          :title => "@#{status[:source][:screen_name]} unsubscribed to your list",
           :message => status[:target_object][:full_name],
         }
       end
