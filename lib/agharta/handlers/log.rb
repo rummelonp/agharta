@@ -4,7 +4,7 @@ require 'logger'
 
 module Agharta
   module Handlers
-    class Log < Handler
+    class Log
       include Configuration
 
       def initialize(context, *args, &block)

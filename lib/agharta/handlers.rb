@@ -25,7 +25,6 @@ module Agharta
   end
 end
 
-require 'agharta/handlers/handler'
 require 'agharta/handlers/store'
 require 'agharta/handlers/log'
 require 'agharta/handlers/notify'
