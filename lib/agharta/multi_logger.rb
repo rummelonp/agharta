@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'logger'
+
 module Agharta
   class MultiLogger
     def initialize(*devices)

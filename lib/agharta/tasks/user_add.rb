@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 require 'oauth'
+require 'twitter'
 require 'yaml'
 
 module Agharta
