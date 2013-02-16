@@ -21,7 +21,8 @@ module Agharta
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
         time = Time.now.strftime('[%m/%d %a] (%H:%M:%S)')
-        @logger.info "#{time} #{data[:title]}: #{data[:message]}"
+        message = "#{time} #{data[:title]}: #{data[:message]}"
+        @logger.info message.colorize(/@[a-zA-Z0-9_]+/, :bright, :underline)
       end
     end
   end
