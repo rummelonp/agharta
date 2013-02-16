@@ -6,11 +6,9 @@ module Agharta
       class User < Hook
         def initialize(context, *args, &block)
           options = args.last.is_a?(Hash) ? args.pop : {}
-          @include = options.fetch(:include, [])
-          @all     = options.fetch(:all,     false)
-          @include.concat(args)
-          handlers.concat(context.handlers)
-          instance_eval &block if block_given?
+          @include = args
+          @all = options.fetch(:all, false)
+          super
         end
 
         def call(status)

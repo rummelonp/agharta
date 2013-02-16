@@ -6,11 +6,9 @@ module Agharta
       class Event < Hook
         def initialize(context, *args, &block)
           options = args.last.is_a?(Hash) ? args.pop : {}
-          @on          = options.fetch(:on,          [])
+          @on = args
           @ignore_self = options.fetch(:ignore_self, false)
-          @on.concat(args)
-          handlers.concat(context.handlers)
-          instance_eval &block if block_given?
+          super
         end
 
         # TODO: implement reply

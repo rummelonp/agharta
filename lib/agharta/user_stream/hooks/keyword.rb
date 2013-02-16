@@ -6,12 +6,10 @@ module Agharta
       class Keyword < Hook
         def initialize(context, *args, &block)
           options = args.last.is_a?(Hash) ? args.pop : {}
-          @include     = options.fetch(:include,     [])
-          @exclude     = options.fetch(:exclude,     [])
+          @include = args
+          @exclude = options.fetch(:exclude, [])
           @ignore_self = options.fetch(:ignore_self, false)
-          @include.concat(args)
-          handlers.concat(context.handlers)
-          instance_eval &block if block_given?
+          super
         end
 
         # TODO: implement ignore self

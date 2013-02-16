@@ -8,7 +8,14 @@ module Agharta
         include Handlers
 
         def initialize(context, *args, &block)
-          raise NotImplementedError
+          handlers.concat(context.handlers)
+          if block_given?
+            if block.arity > 0
+              handler(block)
+            else
+              instance_eval(&block)
+            end
+          end
         end
 
         def call(status)
