@@ -20,7 +20,8 @@ module Agharta
 
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
-        @logger.info "#{data[:title]}: #{data[:message]}"
+        time = Time.now.strftime('[%m/%d %a] (%H:%M:%S)')
+        @logger.info "#{time} #{data[:title]}: #{data[:message]}"
       end
     end
   end
