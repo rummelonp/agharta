@@ -24,7 +24,13 @@ module Agharta
 
         private
         def invoke(status, options = {})
-          handlers.each { |h| h.call(status, options) }
+          handlers.each do |handler|
+            begin
+              handler.call(status, options)
+            rescue
+              @context.logger.error "#{$!.class}: #{$!.message}"
+            end
+          end
         end
 
         def current_user

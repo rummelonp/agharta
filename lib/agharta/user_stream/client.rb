@@ -40,7 +40,13 @@ module Agharta
 
       private
       def invoke(status)
-        hooks.each { |h| h.call(status) }
+        hooks.each do |hook|
+          begin
+            hook.call(status)
+          rescue
+            logger.error "#{$!.class}: #{$!.message}"
+          end
+        end
       end
 
       def connection
