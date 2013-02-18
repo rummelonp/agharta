@@ -2,13 +2,13 @@
 
 module Agharta
   class Recipe
+    include Executable
+    include Configuration
+    include UserStream
+
     def self.register(klass)
       include(klass)
     end
-
-    register Executable
-    register Configuration
-    register UserStream
 
     def self.execute(recipe_path)
       new(recipe_path).execute
