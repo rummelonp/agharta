@@ -10,9 +10,5 @@ module Agharta
       executables << executable
       executable
     end
-
-    def execute
-      raise NotImplementedError
-    end
   end
 end

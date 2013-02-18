@@ -18,10 +18,6 @@ module Agharta
           end
         end
 
-        def call(status)
-          raise NotImplementedError
-        end
-
         private
         def invoke(status, options = {})
           handlers.each do |handler|
