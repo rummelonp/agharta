@@ -21,6 +21,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'tweetstream', '~> 2.4'
 
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'guard-rspec'
+  gem.add_development_dependency 'growl'
   gem.add_development_dependency 'simplecov'
 
   gem.files         = `git ls-files`.split($/)
