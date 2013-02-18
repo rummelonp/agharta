@@ -7,20 +7,20 @@ _agharta() {
         _call_function 1 $(echo _agharta_${words[1]} | sed 's/:/_/')
     else
         _arguments \
-            ":*: _alternative __agharta_tasks __agharta_user_recipes __agharta_example_recipes"
+            ': : _alternative ":task:__agharta_tasks" ":recipe:__agharta_user_recipes" ":example recipe:__agharta_example_recipes"'
     fi
 }
 
 __agharta_tasks() {
    _agharta_tasks=(
-       "task"
-       "user\:add[add new user]"
-       "user\:default[change default user]"
-       "user\:list[show user list]"
-       "console[start console]"
-       "edit[open or edit recipe]"
-       "cat[cat recipe]"
-       "execute[execute recipe]"
+       'task'
+       'user\:add[add new user]'
+       'user\:default[change default user]'
+       'user\:list[show user list]'
+       'console[start console]'
+       'edit[open or edit recipe]'
+       'cat[cat recipe]'
+       'execute[execute recipe]'
    )
 
    _values $_agharta_tasks
@@ -39,50 +39,38 @@ __agharta_user_recipes() {
         _agharta_user_recipes=()
     fi
 
-    _describe -t agharta_user_recipe "recipe" _agharta_user_recipes
+    _describe -t agharta_user_recipe 'recipe' _agharta_user_recipes
 }
 
 __agharta_example_recipes() {
     _agharta_assets=$(dirname $(which agharta))/../assets
     _agharta_example_recipes=($(ls -1 $_agharta_assets/example))
 
-    _describe -t agharta_example_recipe "example recipe" _agharta_example_recipes -P 'example/'
+    _describe -t agharta_example_recipe 'example recipe' _agharta_example_recipes -P 'example/'
 }
 
 __agharta_users() {
     _agharta_users=($(agharta user:list | grep -v -E '(\(\d+ users\)|No users)' | sed 's/\*//g'))
 
-    _describe -t agharta_users "user" _agharta_users
-}
-
-_agharta_user_add() {
-    _message "no more arguments"
+    _describe -t agharta_users 'user' _agharta_users
 }
 
 _agharta_user_default() {
     _arguments \
-        ":user:__agharta_users"
-}
-
-_agharta_user_list() {
-    _message "no more arguments"
-}
-
-_agharta_console() {
-    _message "no more arguments"
+        ':user:__agharta_users'
 }
 
 _agharta_edit() {
     _arguments \
-        ":recipe:__agharta_user_recipes"
+        ':recipe:__agharta_user_recipes'
 }
 
 _agharta_cat() {
     _arguments \
-        ":recipe: _alternative __agharta_user_recipes __agharta_example_recipes"
+        ': : _alternative ":recipe:__agharta_user_recipes" ":example recipe:__agharta_example_recipes"'
 }
 
 _agharta_execute() {
     _arguments \
-        ":recipe: _alternative __agharta_user_recipes __agharta_example_recipes"
+        ': : _alternative ":recipe:__agharta_user_recipes" ":example recipe:__agharta_example_recipes"'
 }
