@@ -3,9 +3,9 @@
 require 'logger'
 
 module Agharta
-  class MultiLogger
+  class MultiLogger < BasicObject
     def initialize(*devices)
-      @loggers = devices.map { |d| Logger.new(d) }
+      @loggers = devices.map { |d| ::Logger.new(d) }
     end
 
     def method_missing(method_name, *args, &block)

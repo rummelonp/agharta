@@ -13,7 +13,7 @@ module Agharta
         options = args.last.is_a?(Hash) ? args.last : {}
         shift_age = options.fetch(:shift_age, 0)
         shift_size = options.fetch(:shift_size, 1048576)
-        @logger = Logger.new(device, shift_age, shift_size)
+        @logger = ::Logger.new(device, shift_age, shift_size)
         @logger.progname = context.name
         @logger.formatter = SimpleFormatter.new
       end
