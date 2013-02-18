@@ -3,6 +3,7 @@
 unless ENV['CI']
   require 'simplecov'
   SimpleCov.start do
+    add_filter 'spec'
     add_group 'Agharta' do |source|
       source.filename =~ /lib\/agharta(|\/[^\/]+).rb/
     end
