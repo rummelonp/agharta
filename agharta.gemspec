@@ -24,6 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'growl'
   gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'yard'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
