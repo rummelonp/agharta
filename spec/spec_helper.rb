@@ -9,7 +9,11 @@ unless ENV['CI']
     end
     add_group 'Tasks',      'lib/agharta/tasks'
     add_group 'UsetStream', 'lib/agharta/user_stream'
-    add_group 'Handlers',   'lib/agharta/handlers'
+    add_group 'Handlers' do |source|
+      source.filename =~ /lib\/agharta\/handlers/ ||
+        source.filename =~ /lib\/agharta\/notifies/ ||
+        source.filename =~ /lib\/agharta\/stores/
+    end
   end
 end
 
