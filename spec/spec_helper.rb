@@ -14,6 +14,7 @@ unless ENV['CI']
         source.filename =~ /lib\/agharta\/notifies/ ||
         source.filename =~ /lib\/agharta\/stores/
     end
+    add_group 'Extension', 'lib/agharta/core_ext'
   end
 end
 
