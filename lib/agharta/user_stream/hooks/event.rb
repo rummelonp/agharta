@@ -28,6 +28,7 @@ module Agharta
           options = args.last.is_a?(Hash) ? args.pop : {}
           validate!(args)
           @on = args
+          @all = options.fetch(:all, false)
           @ignore_self = options.fetch(:ignore_self, false)
           super
         end
@@ -49,13 +50,18 @@ module Agharta
           else
             return
           end
-          return unless @on.include?(event)
-          invoke(status, :type => :event, :event => event)
+          if @all || @on.include?(event)
+            invoke(status, :type => :event, :event => event)
+          end
         end
 
         def on(*events)
           validate!(events)
           @on.concat(events)
+        end
+
+        def all!
+          @all = true
         end
 
         def ignore_self!

@@ -16,13 +16,7 @@ stream {
   }
 
   event {
-    on :reply
-    on :retweet
-    on :direct_message
-    on :favorite
-    on :follow
-    on :list_member_added
-    on :list_user_subscribed
+    all!
     log STDOUT
     log 'stream.log'
   }
