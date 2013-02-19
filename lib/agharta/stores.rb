@@ -17,3 +17,5 @@ module Agharta
     end
   end
 end
+
+require 'agharta/stores/fluent_logger'
