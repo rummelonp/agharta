@@ -28,6 +28,9 @@ class DummyRecipe
   include Agharta::UserStream
 end
 
+class DummyStream < Agharta::UserStream::Client
+end
+
 class DummyHook < Agharta::UserStream::Hooks::Hook
   def call(status)
     invoke(status)
