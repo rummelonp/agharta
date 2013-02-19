@@ -17,4 +17,5 @@ module Agharta
   require 'agharta/notifies'
   require 'agharta/user_stream'
   require 'agharta/recipe'
+  require 'agharta/file_recipe'
 end

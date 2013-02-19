@@ -10,22 +10,13 @@ module Agharta
       include(klass)
     end
 
-    def self.execute(recipe_path)
-      new(recipe_path).execute
-    end
-
     attr_reader :name
-    attr_reader :path
 
-    def initialize(recipe_path)
-      @name = File.basename(recipe_path)
-      @path = recipe_path
+    def initialize(name = caller.first.split(':').first)
+      @name = name
     end
 
     def execute
-      if File.exists?(path)
-        eval(File.read(path), binding)
-      end
       executables.each do |executable|
         Process.fork { executable.execute }
       end

@@ -26,7 +26,7 @@ module Agharta
       end
 
       def execute
-        Recipe.execute(@recipe_path)
+        FileRecipe.execute(@recipe_path)
       end
     end
   end
