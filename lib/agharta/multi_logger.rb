@@ -16,5 +16,7 @@ module Agharta
     def respond_to?(method_name, include_private = false)
       @loggers.all? { |l| l.respond_to?(method_name, include_private) } || super
     end
+
+    undef :warn
   end
 end
