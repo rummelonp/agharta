@@ -1,5 +1,11 @@
 # Agharta
 
+[![Build Status](https://travis-ci.org/mitukiii/agharta.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/mitukiii/agharta.png?travis)][gemnasium]
+
+[travis]: https://travis-ci.org/mitukiii/agharta
+[gemnasium]: https://gemnasium.com/mitukiii/agharta
+
 TODO: Write a gem description
 
 ## Installation
