@@ -10,8 +10,8 @@ module Agharta
     end
 
     def self.call(status, options = {})
-      type = options[:type].to_sym
-      formatter = mappings[type] || mappings[:default]
+      type = (options[:type] || :default).to_sym
+      formatter = mappings[type]
       formatter.call(status, options)
     end
 
