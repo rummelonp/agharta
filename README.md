@@ -63,7 +63,7 @@ stream {
     include 'mitukiii'
     exclude /^.*(RT|QT):? @[\w]+.*$/i
     notify :im_kayac
-    log 'tenga.log'
+    log 'keyword.log'
   }
 
   # all tweets save to fluent
@@ -71,20 +71,20 @@ stream {
     all!
     store :fluentd, 'timeline', :host => 'localhost', :port => 24224
     log STDOUT
-    log 'tweet.log'
+    log 'user.log'
   }
 
   # push & log @twitter tweets
   user(:twitter) {
     notify :im_kayac
-    log 'tenga.log'
+    log 'twitter.log'
   }
 
   # push & log event
   event {
     on :reply, :retweet, :direct_message, :favorite, :follow, :list_member_added, :list_user_subscribed
     notify :im_kayac
-    log 'events.log'
+    log 'event.log'
   }
 }
 ```
