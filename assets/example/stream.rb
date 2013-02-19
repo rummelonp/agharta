@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
 
-puts 'Welcome to Agharta!'
-
 if env.config[:twitter].nil?
   Agharta::Tasks::UserAdd.start
+  env.config(reload = true)
 end
+
+puts 'Welcome to Agharta!'
 
 stream {
   credentials :default
 
   user {
     all!
-    log STDOUT
-    log 'stream.log'
+    log $stdout
+    log 'stream.user.log'
   }
 
   event {
     all!
-    log STDOUT
-    log 'stream.log'
+    log $stdout
+    log 'stream.event.log'
   }
 }
