@@ -13,12 +13,8 @@ module Agharta
       @path = recipe_path
     end
 
-    def load!
-      eval(File.read(path), binding)
-    end
-
     def execute
-      load!
+      eval(File.read(path), binding)
       super
     end
   end
