@@ -6,25 +6,109 @@
 [travis]: https://travis-ci.org/mitukiii/agharta
 [gemnasium]: https://gemnasium.com/mitukiii/agharta
 
-TODO: Write a gem description
+Twitter Streaming API aggregator.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'agharta'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install agharta
+```sh
+gem install agharta
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+```sh
+agharta execute example/stream.rb # execute stream recipe example
+agharta cat example/stream.rb     # show stream recipe example
+agharta user:add                  # add new twitter account to configuration
+agharta agharta user:default      # change default twitter account
+agharta user:list                 # show twitter account list
+agharta edit stream.rb            # edit new your stream recipe
+agharta cat stream.rb             # show your stream recipe
+agharta execute stream.rb         # execute your stream recipe
+agharta console                   # start recipe context console
+```
+
+Your can write recipe in `$HOME/.agharta/recipes`.
+
+```ruby
+stream {
+  # account configuration
+  credentials :mitukiii
+
+  # account configuration
+  # set :consumer_key, …
+  # set :consumer_secret, …
+  # set :oauth_token, …
+  # set :oauth_token_secret, …
+
+  # account configuration
+  # set {
+  #   :consumer_key => …,
+  #   :consumer_secret => …,
+  #   :oauth_token => …,
+  #   :oauth_token_secret => …,
+  # }
+
+  # receive all replies
+  replies_all
+  # params[:replies] = :all
+
+  # receive messages by followings
+  with_followings
+  # params[:with] = :followings
+
+  # push & log keyword
+  keyword {
+    ignore_self!
+    include 'mitukiii'
+    exclude /^.*(RT|QT):? @[\w]+.*$/i
+    notify :im_kayac
+    log 'tenga.log'
+  }
+
+  # all tweets save to fluent
+  user {
+    all!
+    store :fluentd, 'timeline', :host => 'localhost', :port => 24224
+    log STDOUT
+    log 'tweet.log'
+  }
+
+  # push & log @twitter tweets
+  user(:twitter) {
+    notify :im_kayac
+    log 'tenga.log'
+  }
+
+  # push & log event
+  event {
+    on :reply, :retweet, :direct_message, :favorite, :follow, :list_member_added, :list_user_subscribed
+    notify :im_kayac
+    log 'events.log'
+  }
+}
+```
+
+You can also write.
+
+```ruby
+require 'agharta'
+
+recipe = Agharta.new
+
+recipe.stream {
+  # do something...
+}
+
+recipe.execute
+```
+
+## Zsh Completion
+
+You can use zsh completion.  
+Put [_agharta][completion] file to zsh functions directory.
+
+[completion]: https://github.com/mitukiii/agharta/blob/master/assets/completion/_agharta
 
 ## Contributing
 
@@ -33,3 +117,9 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Copyright
+
+Copyright (c) 2011 [Kazuya Takeshima](mailto:mail@mitukiii.jp). See [LICENSE][license] for details.
+
+[license]: https://github.com/mitukiii/agharta/blob/master/LICENSE.md
