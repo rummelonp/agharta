@@ -17,8 +17,8 @@ module Agharta
 
     def set(*args)
       if args.first.is_a?(Hash)
-        args.first.each do |k, v|
-          send("#{k}=", v)
+        args.first.each do |key, value|
+          send("#{key}=", value)
         end
       else
         key, value = *args

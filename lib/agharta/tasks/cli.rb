@@ -11,8 +11,8 @@ module Agharta
 
       def self.desc
         tasks = "Tasks:\n"
-        Tasks.mappings.each do |k, v|
-          tasks << "  #{v.banner.ljust(36)} # #{v.desc}\n"
+        Tasks.mappings.each do |task_name, klass|
+          tasks << "  #{klass.banner.ljust(36)} # #{klass.desc}\n"
         end
         tasks
       end
