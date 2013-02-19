@@ -3,7 +3,7 @@
 require 'logger'
 
 module Agharta
-  class MultiLogger < BasicObject
+  class MultiLogger
     def initialize(*devices)
       @loggers = devices.map { |d| ::Logger.new(d) }
     end

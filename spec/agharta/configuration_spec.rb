@@ -96,9 +96,7 @@ describe Agharta::Configuration do
       context 'when credentials have been set' do
         before do
           @config.set(@other_credentials)
-          @config.should_receive(:build_credentials)
-            .at_least(:once)
-            .and_call_original
+          @config.should_receive(:build_credentials).at_least(:once).and_call_original
         end
 
         it 'should call #build_credentials' do

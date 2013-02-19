@@ -39,7 +39,7 @@ module Agharta
         pin = ask 'PIN:'
 
         access_token = request_token.get_access_token(
-          oauth_verifier: pin
+          :oauth_verifier => pin
         )
 
         credentials = {

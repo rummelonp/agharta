@@ -56,10 +56,9 @@ module Agharta
     end
 
     def default_credentials
-      users = env.config[:twitter]
+      users = env.config[:twitter] || {}
       screen_name = users[:default]
-      credentials = users[screen_name] || {}
-      credentials.select { |k, v| respond_to?("#{k}=") }
+      clean_options(users[screen_name] || {})
     end
 
     def set_credentials(screen_name)
@@ -67,10 +66,19 @@ module Agharta
         if screen_name == :default
           default_credentials
         else
-          credentials = env.config[:twitter][screen_name] || {}
-          credentials.select { |k, v| respond_to?("#{k}=") }
+          users = env.config[:twitter] || {}
+          clean_options(users[screen_name] || {})
         end
       )
+    end
+
+    private
+    def clean_options(options)
+      clean_options = {}
+      options.each do |key, value|
+        clean_options[key] = value if respond_to?("#{key}=")
+      end
+      clean_options
     end
   end
 end

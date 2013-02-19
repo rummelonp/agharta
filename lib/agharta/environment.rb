@@ -9,7 +9,7 @@ module Agharta
     include Singleton
 
     def root
-      @root ||= ENV['AGHARTA_HOME'] || File.join(Dir.home, '.agharta')
+      @root ||= ENV['AGHARTA_HOME'] || File.join(ENV['HOME'], '.agharta')
     end
 
     def config_path

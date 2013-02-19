@@ -22,8 +22,7 @@ module Agharta
       end
 
       def logger
-        @logger ||= MultiLogger.new($stdout, log_path)
-          .tap { |l| l.progname = name }
+        @logger ||= MultiLogger.new($stdout, log_path).tap { |l| l.progname = name }
       end
 
       def params
