@@ -4,7 +4,6 @@ require 'spec_helper'
 
 describe Agharta::Stores do
   before(:all) do
-    DummyHandler = Class.new
     Agharta::Stores.register(:dummy, DummyHandler)
   end
 

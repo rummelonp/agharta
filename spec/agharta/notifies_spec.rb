@@ -4,7 +4,6 @@ require 'spec_helper'
 
 describe Agharta::Notifies do
   before(:all) do
-    DummyHandler = Class.new
     Agharta::Notifies.register(:dummy, DummyHandler)
   end
 

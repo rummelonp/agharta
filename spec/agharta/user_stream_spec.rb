@@ -3,16 +3,8 @@
 require 'spec_helper'
 
 describe Agharta::UserStream do
-  before(:all) do
-    Recipe = Class.new do
-      include Agharta::Executable
-      include Agharta::Configuration
-      include Agharta::UserStream
-    end
-  end
-
   before do
-    @recipe = Recipe.new
+    @recipe = DummyRecipe.new
     @recipe.should_receive(:executable).and_call_original
   end
 

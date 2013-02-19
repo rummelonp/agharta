@@ -4,20 +4,13 @@ require 'spec_helper'
 
 describe Agharta::Handlers do
   before(:all) do
-    DummyHook = Class.new do
-      include Agharta::Context
-      include Agharta::Handlers
-    end
-    DummyHandler = Class.new do
-      def initialize(context, *args, &block)
-      end
-    end
     Agharta::Stores.register(:dummy, DummyHandler)
     Agharta::Notifies.register(:dummy, DummyHandler)
   end
 
   before do
-    @hook = DummyHook.new
+    @context = DummyRecipe.new
+    @hook = DummyHook.new(@context)
     @hook.should_receive(:handler).and_call_original
   end
 

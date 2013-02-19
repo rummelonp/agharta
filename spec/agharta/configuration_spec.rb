@@ -4,10 +4,6 @@ require 'spec_helper'
 
 describe Agharta::Configuration do
   before(:all) do
-    Configurable = Class.new do
-      include Agharta::Configuration
-    end
-
     @default_credentials = {
       :consumer_key       => 'DCK',
       :consumer_secret    => 'DCS',
@@ -34,7 +30,7 @@ describe Agharta::Configuration do
   end
 
   before do
-    @config = Configurable.new
+    @config = DummyRecipe.new
     @config.env.stub(:config).and_return(@env_config)
   end
 

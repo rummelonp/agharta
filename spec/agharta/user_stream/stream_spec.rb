@@ -3,10 +3,7 @@ require 'spec_helper'
 
 describe Agharta::UserStream::Stream do
   before do
-    Context = Class.new do
-      include Agharta::Configuration
-    end
-    @context = Context.new
+    @context = DummyRecipe.new
     @stream = Agharta::UserStream::Stream.new(@context)
   end
 
