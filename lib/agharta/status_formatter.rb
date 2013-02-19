@@ -26,10 +26,17 @@ module Agharta
       StatusFormatter.register :user, self
 
       def self.call(status, options)
-        {
-          :title => "@#{status[:user][:screen_name]} Say",
-          :message => Helper.status_text_with_source(status),
-        }
+        if status[:text] && status[:user]
+          {
+            :title => "@#{status[:user][:screen_name]} Say",
+            :message => Helper.status_text_with_source(status),
+          }
+        else
+          {
+            :title => 'Not format supportted status',
+            :message => status.inspect,
+          }
+        end
       end
     end
 
@@ -52,10 +59,9 @@ module Agharta
         if respond_to?(event)
           send(event, status, options)
         else
-          message = "Not Supported Event \"#{event}\""
           {
-            :title => message,
-            :message => message,
+            :title => "Not format supported event \"#{event}\"",
+            :message => status.inspect,
           }
         end
       end
