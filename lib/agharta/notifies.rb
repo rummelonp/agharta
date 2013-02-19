@@ -18,4 +18,6 @@ module Agharta
   end
 end
 
-require 'agharta/notifies/im_kayac'
+Dir[File.dirname(__FILE__) + '/notifies/*.rb'].each do |file|
+  require file
+end

@@ -2,7 +2,7 @@
 
 module Agharta
   module Notifies
-    class ImKayacCom
+    class ImKayac
       Notifies.register :im_kayac, self
 
       include Configuration
@@ -33,7 +33,7 @@ module Agharta
           params[:password] = @password
         end
 
-        ImKayac.post(@username, message, params)
+        ::ImKayac.post(@username, message, params)
       end
     end
   end

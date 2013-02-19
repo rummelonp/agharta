@@ -18,4 +18,6 @@ module Agharta
   end
 end
 
-require 'agharta/stores/fluent_logger'
+Dir[File.dirname(__FILE__) + '/stores/*.rb'].each do |file|
+  require file
+end
