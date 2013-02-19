@@ -9,9 +9,9 @@ Gem::Specification.new do |gem|
   gem.version       = Agharta::VERSION
   gem.authors       = ['Kazuya Takeshima']
   gem.email         = ['mail@mitukiii.jp']
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ''
+  gem.description   = %q{Twitter Streaming API aggregator.}
+  gem.summary       = %q{Twitter Streaming API aggregator.}
+  gem.homepage      = 'https://github.com/mitukiii/agharta'
 
   gem.add_runtime_dependency 'thor', '~> 0.16'
   gem.add_runtime_dependency 'pry', '~> 0.9'
