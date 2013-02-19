@@ -43,8 +43,7 @@ __agharta_user_recipes() {
 }
 
 __agharta_example_recipes() {
-    _agharta_assets=$(dirname $(which agharta))/../assets
-    _agharta_example_recipes=($(ls -1 $_agharta_assets/example))
+    _agharta_example_recipes=(filter.rb sample.rb stream.rb)
 
     _describe -t agharta_example_recipe 'example recipe' _agharta_example_recipes -P 'example/'
 }
