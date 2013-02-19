@@ -16,11 +16,25 @@ module Agharta
       @name = name
     end
 
+    def pids
+      @pids ||= []
+    end
+
     def execute
       executables.each do |executable|
-        Process.fork { executable.execute }
+        pids << Process.fork do
+          executable.trap
+          executable.execute
+        end
       end
+      trap
       Process.waitall
+    end
+
+    def receive_signal(signal, desc)
+      pids.each { |pid| Process.kill(signal, pid) }
+      pids.clear
+      $stderr.puts desc
     end
   end
 end
