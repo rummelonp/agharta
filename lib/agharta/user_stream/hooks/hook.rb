@@ -18,6 +18,10 @@ module Agharta
           end
         end
 
+        def current_user
+          @context.current_user
+        end
+
         private
         def invoke(status, options = {})
           handlers.each do |handler|
@@ -27,10 +31,6 @@ module Agharta
               @context.logger.error "#{$!.class}: #{$!.message}"
             end
           end
-        end
-
-        def current_user
-          @context.current_user
         end
 
         def current_user?(screen_name)

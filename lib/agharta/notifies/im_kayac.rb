@@ -17,9 +17,13 @@ module Agharta
         unless config
           raise ConfigurationError, "Please configuration of \"im_kayac\" to \"#{env.config_path}\""
         end
-        @username   = config[:username]
-        @password   = config[:password]
+        @username = config[:username]
+        @password = config[:password]
         @secret_key = config[:secret_key]
+        url_scheme_formatter = URLSchemeFormatter.mappings[config[:handler]]
+        if url_scheme_formatter
+          @url_scheme_formatter = url_scheme_formatter.new(context)
+        end
       end
 
       def call(status, options = {})
@@ -27,10 +31,18 @@ module Agharta
         message = "#{data[:title]}: #{data[:message]}"
 
         params = {}
+
         if @secret_key
           params[:sig] = Digest::SHA1.hexdigest(message + @secret_key)
         elsif @password
           params[:password] = @password
+        end
+
+        if @url_scheme_formatter
+          handler = @url_scheme_formatter.call(status, options)
+          if handler
+            params[:handler] = handler
+          end
         end
 
         ::ImKayac.post(@username, message, params)
@@ -38,3 +50,5 @@ module Agharta
     end
   end
 end
+
+require 'agharta/notifies/im_kayac/url_scheme_formatter'
