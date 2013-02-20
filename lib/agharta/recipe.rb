@@ -31,7 +31,7 @@ module Agharta
       Process.waitall
     end
 
-    def receive_signal(signal, desc)
+    def receive_exit_signal(signal, desc)
       pids.each { |pid| Process.kill(signal, pid) }
       pids.clear
       $stderr.puts desc

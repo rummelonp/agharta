@@ -14,8 +14,20 @@ module Agharta
     end
 
     def execute
-      eval(File.read(path), binding)
+      load
       super
+    end
+
+    def receive_reload_signal(signal, desc)
+      pids.each { |pid| Process.kill(:TERM, pid) }
+      executables.clear
+      pids.clear
+      execute
+    end
+
+    private
+    def load
+      eval(File.read(path), binding)
     end
   end
 end
