@@ -120,6 +120,6 @@ Put [_agharta][completion] file to zsh functions directory.
 
 ## Copyright
 
-Copyright (c) 2011 [Kazuya Takeshima](mailto:mail@mitukiii.jp). See [LICENSE][license] for details.
+Copyright (c) 2013 [Kazuya Takeshima](mailto:mail@mitukiii.jp). See [LICENSE][license] for details.
 
 [license]: https://github.com/mitukiii/agharta/blob/master/LICENSE.md
