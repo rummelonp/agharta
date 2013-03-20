@@ -18,9 +18,9 @@ module Agharta
         @username = config[:username]
         @password = config[:password]
         @secret_key = config[:secret_key]
-        url_scheme_formatter = URLSchemeFormatter.mappings[config[:handler]]
-        if url_scheme_formatter
-          @url_scheme_formatter = url_scheme_formatter.new(context)
+        linker_class = Linker.mappings[config[:handler]]
+        if linker_class
+          @linker = linker_class.new(context)
         end
       end
 
@@ -37,8 +37,8 @@ module Agharta
           params[:password] = @password
         end
 
-        if @url_scheme_formatter
-          handler = @url_scheme_formatter.call(status, options)
+        if @linker
+          handler = @linker.call(status, options)
           if handler
             params[:handler] = handler
           end
@@ -88,5 +88,3 @@ module Agharta
     end
   end
 end
-
-require 'agharta/notifies/im_kayac/url_scheme_formatter'
