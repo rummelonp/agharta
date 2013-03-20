@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+require 'faraday'
+require 'yajl'
+
 module Agharta
   module Notifies
     class ImKayac
@@ -8,11 +11,6 @@ module Agharta
       include Configuration
 
       def initialize(context, *args, &block)
-        begin
-          require 'im-kayac'
-        rescue LoadError
-          raise LoadError, 'Please install "im-kayac" gem'
-        end
         config = env.config[:im_kayac]
         unless config
           raise ConfigurationError, "Please configuration of \"im_kayac\" to \"#{env.config_path}\""
@@ -28,9 +26,10 @@ module Agharta
 
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
-        message = "#{data[:title]}: #{data[:message]}"
 
-        params = {}
+        params = {
+          :message => "#{data[:title]}: #{data[:message]}"
+        }
 
         if @secret_key
           params[:sig] = Digest::SHA1.hexdigest(message + @secret_key)
@@ -45,7 +44,46 @@ module Agharta
           end
         end
 
-        ::ImKayac.post(@username, message, params)
+        post("/api/post/#{@username}", params)
+      end
+
+      private
+      def connection
+        Faraday.new(:url => 'http://im.kayac.com') do |builder|
+          builder.request :url_encoded
+          builder.adapter :net_http
+        end
+      end
+
+      def post(path, params = {})
+        response = connection.post(path, params)
+        env = response.env
+        body = Yajl.load(env[:body])
+        env[:body] = body
+        if env[:status] != 200
+          raise APIError, error_message(env)
+        end
+        if body['result'].to_s != 'posted' || body['error'].to_s != ''
+          raise APIError, error_message(env)
+        end
+        body
+      end
+
+      def error_message(env)
+        [
+          env[:method].to_s.upcase,
+          env[:url].to_s,
+          env[:status],
+          error_body(env[:body]),
+        ].join(': ')
+      end
+
+      def error_body(body)
+        if body['error'].to_s != ''
+          body['error']
+        else
+          'unknwon error'
+        end
       end
     end
   end
