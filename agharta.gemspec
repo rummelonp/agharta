@@ -17,6 +17,8 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'pry', '~> 0.9'
   gem.add_runtime_dependency 'rainbow', '~> 1.1'
   gem.add_runtime_dependency 'oauth', '~> 0.4'
+  gem.add_runtime_dependency 'faraday', '~> 0.8'
+  gem.add_runtime_dependency 'yajl-ruby', '~> 1.1'
   gem.add_runtime_dependency 'twitter', '~> 4.4'
   gem.add_runtime_dependency 'tweetstream', '~> 2.4'
 
