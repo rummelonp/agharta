@@ -20,7 +20,7 @@ gem install agharta
 agharta execute example/stream.rb # execute stream recipe example
 agharta cat example/stream.rb     # show stream recipe example
 agharta user:add                  # add new twitter account to configuration
-agharta agharta user:default      # change default twitter account
+agharta user:default              # change default twitter account
 agharta user:list                 # show twitter account list
 agharta edit stream.rb            # edit new your stream recipe
 agharta cat stream.rb             # show your stream recipe
