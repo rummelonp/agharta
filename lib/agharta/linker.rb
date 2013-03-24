@@ -12,7 +12,7 @@ module Agharta
       end
 
       def self.find(linker_name)
-        mappings[linker_name.to_sym] || NoLinker
+        mappings[linker_name.to_s.to_sym] || NoLinker
       end
 
       class NoLinker
