@@ -7,8 +7,8 @@ module Agharta
         @mappings ||= {}
       end
 
-      def self.register(formatter_name, klass)
-        mappings[formatter_name.to_sym] = klass
+      def self.register(linker_name, klass)
+        mappings[linker_name.to_sym] = klass
       end
 
       class Tweetbot
