@@ -5,8 +5,6 @@ require 'yajl'
 require 'multi_xml'
 require 'nokogiri'
 
-MultiXml.parser = :nokogiri
-
 module Agharta
   module Connection
     module Response
