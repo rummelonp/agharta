@@ -8,7 +8,7 @@ module Agharta
   module Connection
     module Response
       class ParseJson < Faraday::Response::Middleware
-        Faraday.register_middleware :response, :json => lambda { self }
+        Faraday.register_middleware :response, :json => -> { self }
 
         def on_complete(env)
           env[:body] = parse_body(env[:body])
@@ -24,7 +24,7 @@ module Agharta
       end
 
       class ParseXml < Faraday::Response::Middleware
-        Faraday.register_middleware :response, :xml => lambda { self }
+        Faraday.register_middleware :response, :xml => -> { self }
 
         def on_complete(env)
           env[:body] = parse_body(env[:body])

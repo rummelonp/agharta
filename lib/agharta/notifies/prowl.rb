@@ -31,9 +31,9 @@ module Agharta
           :description => data[:message],
         }
 
-        handler = @linker.call(status, options)
-        if handler
-          params[:url] = handler
+        url = @linker.call(status, options)
+        if url
+          params[:url] = url
         end
 
         post('/publicapi/add', params)
