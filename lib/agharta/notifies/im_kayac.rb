@@ -11,17 +11,15 @@ module Agharta
       include Configuration
 
       def initialize(context, *args, &block)
-        config = env.config[:im_kayac]
-        unless config
-          raise ConfigurationError, "Please configuration of \"im_kayac\" to \"#{env.config_path}\""
+        config = args.last.is_a?(Hash) ? args.last : {}
+        config = (env.config[:im_kayac] || {}).merge(config)
+        if config.empty?
+          raise ConfigurationError, "Please configuration of \"im_kayac\""
         end
         @username = config[:username]
         @password = config[:password]
         @secret_key = config[:secret_key]
-        linker_class = Linker.mappings[config[:handler]]
-        if linker_class
-          @linker = linker_class.new(context)
-        end
+        @linker = Linker.find(config[:linker]).new(context)
       end
 
       def call(status, options = {})
@@ -37,11 +35,9 @@ module Agharta
           params[:password] = @password
         end
 
-        if @linker
-          handler = @linker.call(status, options)
-          if handler
-            params[:handler] = handler
-          end
+        handler = @linker.call(status, options)
+        if handler
+          params[:handler] = handler
         end
 
         post("/api/post/#{@username}", params)
@@ -50,6 +46,7 @@ module Agharta
       private
       def connection
         Faraday.new(:url => 'http://im.kayac.com') do |builder|
+          builder.response :json
           builder.request :url_encoded
           builder.adapter :net_http
         end
@@ -58,11 +55,10 @@ module Agharta
       def post(path, params = {})
         response = connection.post(path, params)
         env = response.env
-        body = Yajl.load(env[:body])
-        env[:body] = body
         if env[:status] != 200
           raise APIError, error_message(env)
         end
+        body = env[:body]
         if body['result'].to_s != 'posted' || body['error'].to_s != ''
           raise APIError, error_message(env)
         end

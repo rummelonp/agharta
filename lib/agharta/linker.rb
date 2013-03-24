@@ -7,8 +7,21 @@ module Agharta
         @mappings ||= {}
       end
 
-      def self.register(formatter_name, klass)
-        mappings[formatter_name.to_sym] = klass
+      def self.register(linker_name, klass)
+        mappings[linker_name.to_sym] = klass
+      end
+
+      def self.find(linker_name)
+        mappings[linker_name.to_s.to_sym] || NoLinker
+      end
+
+      class NoLinker
+        def initialize(context)
+        end
+
+        def call(status, options)
+          nil
+        end
       end
 
       class Tweetbot

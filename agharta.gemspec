@@ -19,9 +19,9 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'oauth', '~> 0.4'
   gem.add_runtime_dependency 'faraday', '~> 0.8'
   gem.add_runtime_dependency 'yajl-ruby', '~> 1.1'
+  gem.add_runtime_dependency 'multi_xml', '~> 0.5'
   gem.add_runtime_dependency 'twitter', '~> 4.4'
   gem.add_runtime_dependency 'tweetstream', '~> 2.4'
-  gem.add_runtime_dependency 'prowl', '~> 0.1.3'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'

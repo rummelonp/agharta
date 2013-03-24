@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-require 'prowl'
-Prowl_ = Prowl
+require 'faraday'
+require 'multi_xml'
 
 module Agharta
   module Notifies
@@ -11,50 +11,67 @@ module Agharta
       include Configuration
 
       def initialize(context, *args, &block)
-        config = env.config[:prowl]
-        unless config
-          raise ConfigurationError, "Please configuration of \"prowl\" to \"#{env.config_path}\""
+        config = args.last.is_a?(Hash) ? args.last : {}
+        config = (env.config[:prowl] || {}).merge(config)
+        if config.empty?
+          raise ConfigurationError, "Please configuration of \"prowl\""
         end
         @apikey = config[:apikey]
-        linker_class = Linker.mappings[config[:handler]]
-        if linker_class
-          @linker = linker_class.new(context)
-        end
+        @application = config[:application] || 'Agharta'
+        @linker = Linker.find(config[:linker]).new(context)
       end
 
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
 
         params = {
-          :event => "#{data[:title]}",
-          :description => "#{data[:message]}"
+          :application => @application,
+          :apikey => @apikey,
+          :event => data[:title],
+          :description => data[:message],
         }
 
-        if @linker
-          handler = @linker.call(status, options)
-          if handler
-            params[:url] = handler
-          end
+        handler = @linker.call(status, options)
+        if handler
+          params[:url] = handler
         end
-        post(params)
+
+        post('/publicapi/add', params)
       end
 
       private
       def connection
-        Prowl_.new(:apikey => @apikey,
-                  :application => "Agharta")
-      end
-
-      def post(params = {})
-        response = connection.add(params)
-        if response != 200
-          raise APIError, error_message(response)
+        Faraday.new(:url => 'https://api.prowlapp.com') do |builder|
+          builder.response :xml
+          builder.request :url_encoded
+          builder.adapter :net_http
         end
-        response
       end
 
-      def error_message(response)
-        "response code: #{response}"
+      def post(path, params = {})
+        response = connection.post(path, params)
+        env = response.env
+        if env[:status] != 200
+          raise APIError, error_message(env)
+        end
+        env[:body]
+      end
+
+      def error_message(env)
+        [
+          env[:method].to_s.upcase,
+          env[:url].to_s,
+          env[:status],
+          error_body(env[:body]),
+        ].join(': ')
+      end
+
+      def error_body(body)
+        if body['prowl'] && body['prowl']['error'] && body['prowl']['error']['__content__']
+          body['prowl']['error']['__content__']
+        else
+          'Unknown Error'
+        end
       end
     end
   end
