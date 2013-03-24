@@ -11,9 +11,10 @@ module Agharta
       include Configuration
 
       def initialize(context, *args, &block)
-        config = env.config[:im_kayac]
-        unless config
-          raise ConfigurationError, "Please configuration of \"im_kayac\" to \"#{env.config_path}\""
+        config = args.last.is_a?(Hash) ? args.last : {}
+        config = (env.config[:im_kayac] || {}).merge(config)
+        if config.empty?
+          raise ConfigurationError, "Please configuration of \"im_kayac\""
         end
         @username = config[:username]
         @password = config[:password]
