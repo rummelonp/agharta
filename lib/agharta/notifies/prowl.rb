@@ -42,6 +42,7 @@ module Agharta
       private
       def connection
         Faraday.new(:url => 'https://api.prowlapp.com') do |builder|
+          builder.response :xml
           builder.request :url_encoded
           builder.adapter :net_http
         end
@@ -50,12 +51,10 @@ module Agharta
       def post(path, params = {})
         response = connection.post(path, params)
         env = response.env
-        body = MultiXml.parse(env[:body])
-        env[:body] = body
         if env[:status] != 200
           raise APIError, error_message(env)
         end
-        body
+        env[:body]
       end
 
       def error_message(env)

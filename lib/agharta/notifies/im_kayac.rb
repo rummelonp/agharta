@@ -46,6 +46,7 @@ module Agharta
       private
       def connection
         Faraday.new(:url => 'http://im.kayac.com') do |builder|
+          builder.response :json
           builder.request :url_encoded
           builder.adapter :net_http
         end
@@ -54,11 +55,10 @@ module Agharta
       def post(path, params = {})
         response = connection.post(path, params)
         env = response.env
-        body = Yajl.load(env[:body])
-        env[:body] = body
         if env[:status] != 200
           raise APIError, error_message(env)
         end
+        body = env[:body]
         if body['result'].to_s != 'posted' || body['error'].to_s != ''
           raise APIError, error_message(env)
         end
