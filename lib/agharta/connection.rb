@@ -3,7 +3,6 @@
 require 'faraday'
 require 'yajl'
 require 'multi_xml'
-require 'nokogiri'
 
 module Agharta
   module Connection
