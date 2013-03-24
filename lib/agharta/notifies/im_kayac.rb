@@ -19,10 +19,7 @@ module Agharta
         @username = config[:username]
         @password = config[:password]
         @secret_key = config[:secret_key]
-        linker_class = Linker.mappings[config[:handler]]
-        if linker_class
-          @linker = linker_class.new(context)
-        end
+        @linker = Linker.find(config[:linker]).new(context)
       end
 
       def call(status, options = {})
@@ -38,11 +35,9 @@ module Agharta
           params[:password] = @password
         end
 
-        if @linker
-          handler = @linker.call(status, options)
-          if handler
-            params[:handler] = handler
-          end
+        handler = @linker.call(status, options)
+        if handler
+          params[:handler] = handler
         end
 
         post("/api/post/#{@username}", params)
