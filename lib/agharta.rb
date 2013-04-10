@@ -21,7 +21,7 @@ require 'agharta/recipe'
 require 'agharta/file_recipe'
 
 module Agharta
-  def self.new(name  = caller.first.split(':').first)
-    Recipe.new(name)
+  def self.new(name  = caller.first.split(':').first, &block)
+    Recipe.new(name, &block)
   end
 end

@@ -8,8 +8,9 @@ module Agharta
 
     attr_reader :name
 
-    def initialize(name = caller.first.split(':').first)
+    def initialize(name = caller.first.split(':').first, &block)
       @name = name
+      instance_eval(&block) if block_given?
     end
 
     def pids
