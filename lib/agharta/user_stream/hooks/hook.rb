@@ -14,7 +14,7 @@ module Agharta
           @context = context
           if block_given?
             if block.arity > 0
-              handler(block)
+              add_handler(block)
             else
               instance_eval(&block)
             end
