@@ -6,10 +6,6 @@ module Agharta
     include Configuration
     include UserStream
 
-    def self.register(klass)
-      include(klass)
-    end
-
     attr_reader :name
 
     def initialize(name = caller.first.split(':').first)
