@@ -16,7 +16,7 @@ module Agharta
       @executables ||= []
     end
 
-    def executable(executable)
+    def add_executable(executable)
       executables << executable
       executable
     end

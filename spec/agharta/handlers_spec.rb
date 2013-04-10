@@ -11,7 +11,7 @@ describe Agharta::Handlers do
   before do
     @context = DummyRecipe.new
     @hook = DummyHook.new(@context)
-    @hook.should_receive(:handler).and_call_original
+    @hook.should_receive(:add_handler).and_call_original
   end
 
   describe '#store' do

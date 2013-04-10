@@ -3,15 +3,15 @@
 module Agharta
   module UserStream
     def stream(options = {}, &block)
-      executable Stream.new(self, options, &block)
+      add_executable(Stream.new(self, options, &block))
     end
 
     def filter(options = {}, &block)
-      executable Filter.new(self, options, &block)
+      add_executable(Filter.new(self, options, &block))
     end
 
     def sample(options = {}, &block)
-      executable Sample.new(self, options, &block)
+      add_executable(Sample.new(self, options, &block))
     end
   end
 end

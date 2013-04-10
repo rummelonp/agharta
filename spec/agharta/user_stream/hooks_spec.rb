@@ -9,7 +9,7 @@ describe Agharta::UserStream::Hooks do
   end
 
   before do
-    @stream.should_receive(:hook).and_call_original
+    @stream.should_receive(:add_hook).and_call_original
   end
 
   describe '#keyword' do

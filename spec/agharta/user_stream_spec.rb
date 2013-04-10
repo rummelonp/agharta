@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Agharta::UserStream do
   before do
     @recipe = DummyRecipe.new
-    @recipe.should_receive(:executable).and_call_original
+    @recipe.should_receive(:add_executable).and_call_original
   end
 
   describe '#stream' do
