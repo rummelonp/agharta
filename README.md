@@ -1,9 +1,11 @@
 # Agharta
 
 [![Build Status](https://travis-ci.org/mitukiii/agharta.png?branch=master)][travis]
+[![Code Climate](https://codeclimate.com/github/mitukiii/agharta.png)][codeclimate]
 [![Dependency Status](https://gemnasium.com/mitukiii/agharta.png?travis)][gemnasium]
 
 [travis]: https://travis-ci.org/mitukiii/agharta
+[codeclimate]: https://codeclimate.com/github/mitukiii/agharta
 [gemnasium]: https://gemnasium.com/mitukiii/agharta
 
 Twitter Streaming API aggregator.
