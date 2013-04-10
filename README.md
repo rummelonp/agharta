@@ -122,4 +122,4 @@ Put [_agharta][completion] file to zsh functions directory.
 
 Copyright (c) 2013 [Kazuya Takeshima](mailto:mail@mitukiii.jp). See [LICENSE][license] for details.
 
-[license]: https://github.com/mitukiii/agharta/blob/master/LICENSE.md
+[license]: LICENSE.md
