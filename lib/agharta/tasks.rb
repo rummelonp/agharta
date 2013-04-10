@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-require 'thor/group'
-
 module Agharta
   module Tasks
     def self.mappings
@@ -14,12 +12,6 @@ module Agharta
   end
 end
 
-require 'agharta/tasks/actions'
-require 'agharta/tasks/cli'
-require 'agharta/tasks/user_add'
-require 'agharta/tasks/user_default'
-require 'agharta/tasks/user_list'
-require 'agharta/tasks/console'
-require 'agharta/tasks/edit'
-require 'agharta/tasks/cat'
-require 'agharta/tasks/execute'
+Dir[File.dirname(__FILE__) + '/tasks/*.rb'].each do |file|
+  require file
+end

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/notifies'
+
 module Agharta
   module Handlers
     module Notify

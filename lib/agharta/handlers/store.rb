@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/stores'
+
 module Agharta
   module Handlers
     module Store

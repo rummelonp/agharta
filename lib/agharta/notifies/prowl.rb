@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
 require 'faraday'
-require 'multi_xml'
+require 'agharta/configuration'
+require 'agharta/connection'
+require 'agharta/errors'
+require 'agharta/linker'
+require 'agharta/status_formatter'
 
 module Agharta
   module Notifies

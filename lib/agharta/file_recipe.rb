@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/recipe'
+
 module Agharta
   class FileRecipe < Recipe
     attr_reader :path

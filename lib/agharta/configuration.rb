@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/environment'
+
 module Agharta
   module Configuration
     OPTIONS_KEY = [

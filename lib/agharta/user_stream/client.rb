@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/configuration'
+require 'agharta/context'
+require 'agharta/executable'
+require 'agharta/multi_logger'
+require 'agharta/user_stream/hooks'
 require 'tweetstream'
+require 'twitter'
 
 module Agharta
   module UserStream
     class Client
-      include Executable
-      include Context
       include Configuration
+      include Context
+      include Executable
       include Hooks
 
       def initialize(context, options = {}, &block)

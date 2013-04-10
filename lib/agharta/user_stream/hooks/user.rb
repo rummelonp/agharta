@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/user_stream/hooks/hook'
+
 module Agharta
   module UserStream
     module Hooks

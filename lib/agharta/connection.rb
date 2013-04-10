@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 require 'faraday'
-require 'yajl'
 require 'multi_xml'
+require 'yajl'
 
 module Agharta
   module Connection

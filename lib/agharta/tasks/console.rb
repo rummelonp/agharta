@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/recipe'
+require 'agharta/tasks/actions'
 require 'pry'
+require 'thor/group'
 
 module Agharta
   module Tasks

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-require 'singleton'
 require 'fileutils'
+require 'singleton'
 require 'yaml'
 
 module Agharta

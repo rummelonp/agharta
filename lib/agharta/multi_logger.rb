@@ -17,6 +17,7 @@ module Agharta
       @loggers.all? { |logger| logger.respond_to?(method_name, include_private) } || super
     end
 
+    # Delete Kernel#warn
     undef :warn
   end
 end

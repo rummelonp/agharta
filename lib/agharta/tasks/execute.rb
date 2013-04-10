@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/file_recipe'
+require 'agharta/tasks/actions'
+require 'thor/group'
+
 module Agharta
   module Tasks
     class Execute < Thor::Group

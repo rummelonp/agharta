@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/tasks/actions'
 require 'oauth'
+require 'thor/group'
 require 'twitter'
 require 'yaml'
 

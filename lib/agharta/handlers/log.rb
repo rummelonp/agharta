@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 require 'logger'
+require 'agharta/configuration'
+require 'agharta/simple_formatter'
+require 'agharta/status_formatter'
 
 module Agharta
   module Handlers

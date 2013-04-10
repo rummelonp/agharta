@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/environment'
+
 module Agharta
   module Tasks
     module Actions

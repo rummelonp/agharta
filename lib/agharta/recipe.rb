@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/configuration'
+require 'agharta/core_ext'
+require 'agharta/executable'
+require 'agharta/user_stream'
+
 module Agharta
   class Recipe
-    include Executable
     include Configuration
+    include Executable
     include UserStream
 
     attr_reader :name

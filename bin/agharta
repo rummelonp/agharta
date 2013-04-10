@@ -4,6 +4,6 @@
 lib = File.dirname(__FILE__) + '/../lib'
 $:.unshift lib unless $:.include? lib
 
-require 'agharta'
+require 'agharta/tasks'
 
 Agharta::Tasks::Cli.start(ARGV)

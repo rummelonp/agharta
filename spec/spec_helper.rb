@@ -18,7 +18,8 @@ unless ENV['CI']
   end
 end
 
-require 'agharta'
+require 'agharta/recipe'
+require 'agharta/tasks'
 require 'rspec'
 
 class DummyRecipe

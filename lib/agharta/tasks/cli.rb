@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/tasks/actions'
+require 'thor/group'
+
 module Agharta
   module Tasks
     class Cli < Thor::Group
