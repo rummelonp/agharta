@@ -24,12 +24,12 @@ module Agharta
     def trap
       EXIT_SIGNALS.each do |signal, desc|
         Signal.trap(signal) do
-          receive_exit_signal(signal, desc)
+          Thread.start { receive_exit_signal(signal, desc) }.join
         end
       end
       RELOAD_SIGNALS.each do |signal, desc|
         Signal.trap(signal) do
-          receive_reload_signal(signal, desc)
+          Thread.start { receive_reload_signal(signal, desc) }.join
         end
       end
     end
