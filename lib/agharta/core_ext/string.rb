@@ -3,16 +3,21 @@
 require 'rainbow'
 
 class String
+  # @private
   COLORS = Sickill::Rainbow::TERM_COLORS.keys - [:default, :black, :white]
 
-  def color_code
-    COLORS[(each_byte.map(&:to_i).inject(&:+) || 0) % COLORS.size]
-  end
-
+  # Return colorized string
+  #
+  # @return [String]
   def auto_color
     color(color_code)
   end
 
+  # Return colorized string from pattern
+  #
+  # @param pattern [Regexp]
+  # @param effects [Array<Symbol>]
+  # @return [String]
   def colorize(pattern, *effects)
     split(/(#{pattern})/).map { |s|
       if s =~ /#{pattern}/
@@ -20,5 +25,10 @@ class String
       end
       s
     }.join('')
+  end
+
+  private
+  def color_code
+    COLORS[(each_byte.map(&:to_i).inject(&:+) || 0) % COLORS.size]
   end
 end

@@ -1,4 +1,5 @@
 --no-private
+--tag override:"This method is overridden."
 --markup markdown
 -
 LICENSE.md

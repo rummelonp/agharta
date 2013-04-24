@@ -14,6 +14,13 @@ module Agharta
 
       include Configuration
 
+      # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
+      # @overload initialize(context, options = {})
+      #   @param context [Agharta::Context]
+      #   @param options [Hash]
+      #   @option options [String] apikey (nil) API Key of Prowl
+      #   @option options [String] application ("Agharta") Application name of Prowl
+      #   @option options [Symbol] linker (nil) Linker to use to Prowl url
       def initialize(context, *args, &block)
         config = args.last.is_a?(Hash) ? args.last : {}
         config = (env.config[:prowl] || {}).merge(config)
@@ -25,6 +32,10 @@ module Agharta
         @linker = Linker.find(config[:linker]).new(context)
       end
 
+      # Push notification to Prowl
+      #
+      # @param status [Hash]
+      # @param options [Hash]
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
 

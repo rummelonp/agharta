@@ -6,12 +6,14 @@ require 'thor/group'
 module Agharta
   module Tasks
     class Cli < Thor::Group
+      # @private
       def self.banner
         'agharta [task or recipe]'
       end
 
       include Actions
 
+      # @private
       def self.desc
         tasks = "Tasks:\n"
         Tasks.mappings.each do |task_name, klass|

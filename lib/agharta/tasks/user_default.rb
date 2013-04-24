@@ -8,6 +8,7 @@ module Agharta
     class UserDefault < Thor::Group
       Tasks.register 'user:default', self
 
+      # @private
       def self.banner
         'agharta user:default [user_name]'
       end

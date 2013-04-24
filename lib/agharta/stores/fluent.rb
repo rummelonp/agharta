@@ -5,6 +5,10 @@ module Agharta
     class Fluent
       Stores.register :fluent, self
 
+      # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
+      # @overload initialize(context, tag_prefix)
+      #   @param context [Agharta::Context]
+      #   @param tag_prefix [String]
       def initialize(context, *args, &block)
         begin
           require 'fluent-logger'
@@ -15,6 +19,10 @@ module Agharta
         @logger = ::Fluent::Logger::FluentLogger.new(tag_prefix, *args)
       end
 
+      # Sent status to fluentd
+      #
+      # @param status [Hash]
+      # @param options [Hash]
       def call(status, options = {})
         tag = options[:type] || 'status'
         @logger.post(tag, status)

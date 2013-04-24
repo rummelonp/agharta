@@ -6,10 +6,16 @@ require 'agharta/handlers'
 module Agharta
   module UserStream
     module Hooks
+      # @abstract Inherit this class when to create hook class
       class Hook
         include Context
         include Handlers
 
+        # @param context [Agharta::Context]
+        # @yield [status, options] Add block to handler when arity greater than zero
+        # @yield Evaluate as event hook context when arity is zero
+        # @yieldparam [Hash] status
+        # @yieldparam [Hash] options
         def initialize(context, *args, &block)
           @context = context
           if block_given?
@@ -21,6 +27,9 @@ module Agharta
           end
         end
 
+        # Return current user credentials
+        #
+        # @return [Hash]
         def current_user
           @context.current_user
         end

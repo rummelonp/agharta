@@ -10,6 +10,7 @@ module Agharta
     class Console < Thor::Group
       Tasks.register 'console', self
 
+      # @private
       def self.banner
         'agharta console'
       end

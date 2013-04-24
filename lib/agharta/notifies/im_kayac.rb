@@ -14,6 +14,14 @@ module Agharta
 
       include Configuration
 
+      # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
+      # @overload initialize(context, options = {})
+      #   @param context [Agharta::Context]
+      #   @param options [Hash]
+      #   @option options [String] username (nil) Username of im.kayac.com account
+      #   @option options [String] password (nil) Password of im.kayac.com account
+      #   @option options [String] secret_key (nil) Secret key of im.kayac.com account
+      #   @option options [Symbol] linker (nil) Linker to use to im.kayac.com handler
       def initialize(context, *args, &block)
         config = args.last.is_a?(Hash) ? args.last : {}
         config = (env.config[:im_kayac] || {}).merge(config)
@@ -26,6 +34,10 @@ module Agharta
         @linker = Linker.find(config[:linker]).new(context)
       end
 
+      # Push notification to im.kayac.com
+      #
+      # @param status [Hash]
+      # @param options [Hash]
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
 
