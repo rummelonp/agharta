@@ -14,6 +14,7 @@ unless ENV['CI']
         source.filename =~ /lib\/agharta\/notifies/ ||
         source.filename =~ /lib\/agharta\/stores/
     end
+    add_group 'Hooks',     'lib/agharta/hooks'
     add_group 'Extension', 'lib/agharta/core_ext'
   end
 end
@@ -32,7 +33,7 @@ end
 class DummyStream < Agharta::UserStream::Client
 end
 
-class DummyHook < Agharta::UserStream::Hooks::Hook
+class DummyHook < Agharta::Hookable
   def call(status)
     invoke(status)
   end

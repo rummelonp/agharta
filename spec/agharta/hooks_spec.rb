@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Agharta::UserStream::Hooks do
+describe Agharta::Hooks do
   before do
     @context = DummyRecipe.new
     @stream = DummyStream.new(@context)
@@ -14,19 +14,19 @@ describe Agharta::UserStream::Hooks do
 
   describe '#keyword' do
     it 'should add keyword hook to hooks' do
-      @stream.keyword.should be_is_a(Agharta::UserStream::Hooks::Keyword)
+      @stream.keyword.should be_is_a(Agharta::Hooks::Keyword)
     end
   end
 
   describe '#user' do
     it 'should add user hook to hooks' do
-      @stream.user.should be_is_a(Agharta::UserStream::Hooks::User)
+      @stream.user.should be_is_a(Agharta::Hooks::User)
     end
   end
 
   describe '#event' do
     it 'should add event hook to hooks' do
-      @stream.event.should be_is_a(Agharta::UserStream::Hooks::Event)
+      @stream.event.should be_is_a(Agharta::Hooks::Event)
     end
   end
 end

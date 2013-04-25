@@ -3,8 +3,8 @@
 require 'agharta/configuration'
 require 'agharta/context'
 require 'agharta/executable'
+require 'agharta/hooks'
 require 'agharta/multi_logger'
-require 'agharta/user_stream/hooks'
 require 'tweetstream'
 require 'twitter'
 
