@@ -23,9 +23,9 @@ require 'agharta/tasks'
 require 'rspec'
 
 class DummyRecipe
-  include Agharta::Executable
-  include Agharta::Context
   include Agharta::Configuration
+  include Agharta::Context
+  include Agharta::Executable
   include Agharta::UserStream
 end
 
