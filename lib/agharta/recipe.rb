@@ -30,6 +30,8 @@ module Agharta
     end
 
     # Execute this recipe
+    #
+    # @override
     def execute
       executables.each do |executable|
         pids << Process.fork do

@@ -49,6 +49,7 @@ module Agharta
 
       # Return current user credentials
       #
+      # @override
       # @return [Hash]
       def current_user
         @current_user ||= Twitter::Client.new(credentials).verify_credentials

@@ -49,6 +49,7 @@ module Agharta
         # Call when receive status.
         #   Invoke handlers if match conditions.
         #
+        # @override
         # @param status [Hash]
         def call(status)
           event = nil

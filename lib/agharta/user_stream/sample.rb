@@ -6,6 +6,8 @@ module Agharta
   module UserStream
     class Sample < Client
       # Execute this stream
+      #
+      # @override
       def execute
         connection.sample
       end

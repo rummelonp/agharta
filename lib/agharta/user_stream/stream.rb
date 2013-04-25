@@ -59,6 +59,8 @@ module Agharta
       end
 
       # Execute this stream
+      #
+      # @override
       def execute
         connection.userstream(params.merge(:method => :post))
       end

@@ -23,6 +23,8 @@ module Agharta
     end
 
     # Execute this recipe
+    #
+    # @override
     def execute
       load
       super

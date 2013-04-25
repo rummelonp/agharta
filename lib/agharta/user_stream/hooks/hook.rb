@@ -27,8 +27,14 @@ module Agharta
           end
         end
 
+        # @abstract Should override
+        def call(status)
+          raise NotImplementedError, 'Should override'
+        end
+
         # Return current user credentials
         #
+        # @override
         # @return [Hash]
         def current_user
           @context.current_user

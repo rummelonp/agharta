@@ -32,6 +32,11 @@ module Agharta
       executable
     end
 
+    # @abstract Should override
+    def execute
+      raise NotImplementedError, 'Should override'
+    end
+
     # Set up exit & reload signal handlers
     def trap
       EXIT_SIGNALS.each do |signal, desc|

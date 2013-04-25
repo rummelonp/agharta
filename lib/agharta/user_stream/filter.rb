@@ -30,6 +30,8 @@ module Agharta
       end
 
       # Execute this stream
+      #
+      # @override
       def execute
         connection.filter(params)
       end
