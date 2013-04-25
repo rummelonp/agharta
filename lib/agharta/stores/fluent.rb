@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/handleable'
+
 module Agharta
   module Stores
-    class Fluent
+    class Fluent < Handleable
       Stores.register :fluent, self
 
       # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
@@ -21,6 +23,7 @@ module Agharta
 
       # Sent status to fluentd
       #
+      # @override
       # @param status [Hash]
       # @param options [Hash]
       def call(status, options = {})

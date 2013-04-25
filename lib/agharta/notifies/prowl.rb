@@ -4,12 +4,13 @@ require 'faraday'
 require 'agharta/configuration'
 require 'agharta/connection'
 require 'agharta/errors'
+require 'agharta/handleable'
 require 'agharta/linker'
 require 'agharta/status_formatter'
 
 module Agharta
   module Notifies
-    class Prowl
+    class Prowl < Handleable
       Notifies.register :prowl, self
 
       include Configuration
@@ -34,6 +35,7 @@ module Agharta
 
       # Push notification to Prowl
       #
+      # @override
       # @param status [Hash]
       # @param options [Hash]
       def call(status, options = {})

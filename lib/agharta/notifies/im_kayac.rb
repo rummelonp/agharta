@@ -4,12 +4,13 @@ require 'faraday'
 require 'agharta/configuration'
 require 'agharta/connection'
 require 'agharta/errors'
+require 'agharta/handleable'
 require 'agharta/linker'
 require 'agharta/status_formatter'
 
 module Agharta
   module Notifies
-    class ImKayac
+    class ImKayac < Handleable
       Notifies.register :im_kayac, self
 
       include Configuration
@@ -36,6 +37,7 @@ module Agharta
 
       # Push notification to im.kayac.com
       #
+      # @override
       # @param status [Hash]
       # @param options [Hash]
       def call(status, options = {})

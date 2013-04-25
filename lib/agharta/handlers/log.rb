@@ -2,12 +2,13 @@
 
 require 'logger'
 require 'agharta/configuration'
+require 'agharta/handleable'
 require 'agharta/simple_formatter'
 require 'agharta/status_formatter'
 
 module Agharta
   module Handlers
-    class Log
+    class Log < Handleable
       include Configuration
 
       # @overload initialize(log_name, options = {})
@@ -28,6 +29,7 @@ module Agharta
 
       # Log status
       #
+      # @override
       # @param status [Hash]
       # @param options [Hash]
       def call(status, options = {})

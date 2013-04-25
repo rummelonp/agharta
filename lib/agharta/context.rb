@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 module Agharta
-  # @abstract Include this module when to create executable or hookable object
+  # @abstract Include this module when to create executable or hookable class
   module Context
     # Return context name
     #

@@ -12,7 +12,7 @@ module Agharta
     #   @param context [Agharta::Context]
     #   @param notify_name [Symbol] Store adapter name
     #   @param options [Hash] Optional hash to give to store adapter class
-    #   @return [Object]
+    #   @return [Agharta::Handleable]
     module Store
       def self.new(context, *args, &block)
         store_name = args.shift

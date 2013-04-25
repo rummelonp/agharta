@@ -12,7 +12,7 @@ module Agharta
     #   @param context [Agharta::Context]
     #   @param notify_name [Symbol] Notify adapter name
     #   @param options [Hash] Optional hash to give to notify adapter class
-    #   @return [Object]
+    #   @return [Agharta::Handleable]
     module Notify
       def self.new(context, *args, &block)
         notify_name = args.shift

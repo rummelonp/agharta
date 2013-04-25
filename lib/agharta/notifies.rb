@@ -4,7 +4,7 @@ module Agharta
   module Notifies
     # Return list of notify classes
     #
-    # @return [Array<Class>]
+    # @return [Array<Agharta::Handleable>]
     def self.mappings
       @mappings ||= {}
     end
@@ -12,8 +12,8 @@ module Agharta
     # Register notify
     #
     # @param notify_name [Symbol]
-    # @param klass [Class]
-    # @return [Class]
+    # @param klass [Aghart::Handleable]
+    # @return [Aghart::Handleable]
     def self.register(notify_name, klass)
       mappings[notify_name.to_sym] = klass
     end
@@ -21,7 +21,7 @@ module Agharta
     # Find notify from given name
     #
     # @param notify_name [Symbol]
-    # @return [Class]
+    # @return [Aghart::Handleable]
     # @raise [ArgumentError] Error raised when notify class not found
     def self.find(notify_name)
       store = mappings[notify_name.to_sym]

@@ -39,7 +39,7 @@ class DummyHook < Agharta::Hookable
   end
 end
 
-class DummyHandler
+class DummyHandler < Agharta::Handleable
   def initialize(context, *args, &block)
   end
   def call(status, options = {})

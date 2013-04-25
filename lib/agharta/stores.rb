@@ -4,7 +4,7 @@ module Agharta
   module Stores
     # Return list of store classes
     #
-    # @return [Array<Class>]
+    # @return [Array<Agharta::Handleable>]
     def self.mappings
       @mappings ||= {}
     end
@@ -12,8 +12,8 @@ module Agharta
     # Register store
     #
     # @param store_name [Symbol]
-    # @param klass [Class]
-    # @return [Class]
+    # @param klass [Agharta::Handleable]
+    # @return [Agharta::Handleable]
     def self.register(store_name, klass)
       mappings[store_name.to_sym] = klass
     end
@@ -21,7 +21,7 @@ module Agharta
     # Find store from given name
     #
     # @param store_name [Symbol]
-    # @return [Class]
+    # @return [Agharta::Handleable]
     # @raise [ArgumentError] Error raised when store class not found
     def self.find(store_name)
       store = mappings[store_name.to_sym]

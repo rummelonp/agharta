@@ -5,19 +5,18 @@ require 'agharta/handlers/notify'
 require 'agharta/handlers/store'
 
 module Agharta
-  # @todo Inherit abstract handler class at all handler subclasses
   module Handlers
     # Return list of handler objects
     #
-    # @return [Array<Object>]
+    # @return [Array<Agharta::Handleable>]
     def handlers
       @handlers ||= []
     end
 
     # Add handler object to list
     #
-    # @param handler [Object]
-    # @return [Object]
+    # @param handler [Agharta::Handleable]
+    # @return [Agharta::Handleable]
     def add_handler(handler)
       handlers << handler
       handler
@@ -31,7 +30,7 @@ module Agharta
     #   @param options [Hash] Optional hash to give to logger
     #   @option options [Integer, Symbol, String] :shift_age (nil)
     #   @option options [Integer] :shift_size (nil)
-    #   @return [Object]
+    #   @return [Agharta::Handleable]
     #   @example Log status to "my.log" when invoke hook
     #     hook.log('my.log', :shift_age => 0, :shift_size => 1048576)
     def log(*args, &block)
@@ -46,7 +45,7 @@ module Agharta
     # @overload notify(notify_name, options = {})
     #   @param notify_name [Symbol] Notify adapter name
     #   @param options [Hash] Optional hash to give to notify adapter class
-    #   @return [Object]
+    #   @return [Agharta::Handleable]
     #   @example Push notification to im.kayac.com with given configuration when invoke hook
     #     recipe.notify(:im_kakac, {:username => 'mitukiii', :password => 'my_password', :linker => :tweetbot})
     #   @example Push notification to Prowl with given configuration when invoke hook
@@ -63,7 +62,7 @@ module Agharta
     # @overload store(store_name, options = {})
     #   @param store_name [Symbol] Store adapter name
     #   @param options [Hash] Optional hash to give to store adapter class
-    #   @return [Object]
+    #   @return [Agharta::Handleable]
     #   @example Log status by fluentd when invoke hook
     #     hook.store(:fluent, 'my_tag_prefix')
     def store(*args, &block)
