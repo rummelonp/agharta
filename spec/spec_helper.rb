@@ -19,18 +19,18 @@ unless ENV['CI']
   end
 end
 
-require 'agharta/recipe'
-require 'agharta/tasks'
+require 'agharta'
 require 'rspec'
 
 class DummyRecipe
   include Agharta::Configuration
-  include Agharta::Context
   include Agharta::Executable
-  include Agharta::UserStream
+  include Agharta::Executes
 end
 
-class DummyStream < Agharta::UserStream::Client
+class DummyExecutable
+  include Agharta::Executable
+  include Agharta::Hooks
 end
 
 class DummyHook < Agharta::Hookable

@@ -1,14 +1,15 @@
+# -*- coding: utf-8 -*-
 
 require 'spec_helper'
 
-describe Agharta::UserStream::Filter do
+describe Agharta::Executes::Filter do
   before do
     @context = DummyRecipe.new
-    @filter = Agharta::UserStream::Filter.new(@context)
+    @filter = Agharta::Executes::Filter.new(@context)
   end
 
   describe '#track' do
-    it 'should set it to track parameter' do
+    it 'should set it to track gtparameter' do
       @filter.track('twitter', 'tumblr')
       @filter.params[:track].should == 'twitter,tumblr'
     end

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-require 'agharta/user_stream/client'
+require 'agharta/user_stream'
 
 module Agharta
-  module UserStream
-    class Filter < Client
+  module Executes
+    class Filter < UserStream
       # Set it to track parameter
       #
       # @see https://dev.twitter.com/docs/api/1.1/post/statuses/filter

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-require 'agharta/user_stream/client'
+require 'agharta/user_stream'
 
 module Agharta
-  module UserStream
-    class Sample < Client
+  module Executes
+    class Sample < UserStream
       # Execute this stream
       #
       # @override

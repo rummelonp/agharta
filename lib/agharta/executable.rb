@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
+require 'agharta/context'
+
 module Agharta
-  # @todo Refactor
   # @abstract Include this module when to create executable class
   module Executable
+    include Context
+
     # @private
     RELOAD_SIGNALS = {
       :HUP => 'Reload',
@@ -15,22 +18,6 @@ module Agharta
       :TERM => 'Terminated',
       :QUIT => 'Quitted',
     }.freeze
-
-    # Return list of executable objects
-    #
-    # @return [Array<Agharta::Executable>]
-    def executables
-      @executables ||= []
-    end
-
-    # Add executable object to list
-    #
-    # @param executable [Agharta::Executable]
-    # @return [Agharta::Executable]
-    def add_executable(executable)
-      executables << executable
-      executable
-    end
 
     # @abstract Should override
     def execute

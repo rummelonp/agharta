@@ -3,13 +3,13 @@
 require 'agharta/configuration'
 require 'agharta/core_ext'
 require 'agharta/executable'
-require 'agharta/user_stream'
+require 'agharta/executes'
 
 module Agharta
   class Recipe
     include Configuration
     include Executable
-    include UserStream
+    include Executes
 
     # Return recipe name
     #
