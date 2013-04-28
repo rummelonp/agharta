@@ -7,8 +7,7 @@ unless ENV['CI']
     add_group 'Agharta' do |source|
       source.filename =~ /lib\/agharta(|\/[^\/]+).rb/
     end
-    add_group 'Tasks',      'lib/agharta/tasks'
-    add_group 'UsetStream', 'lib/agharta/user_stream'
+    add_group 'Executes',   'lib/agharta/executes'
     add_group 'Handlers' do |source|
       source.filename =~ /lib\/agharta\/handlers/ ||
         source.filename =~ /lib\/agharta\/notifies/ ||
