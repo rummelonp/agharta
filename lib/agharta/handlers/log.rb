@@ -24,7 +24,7 @@ module Agharta
         shift_size = options.fetch(:shift_size, 1048576)
         @logger = ::Logger.new(device, shift_age, shift_size)
         @logger.progname = context.name
-        @logger.formatter = SimpleFormatter.new
+        @logger.formatter = ::Logger::SimpleFormatter.new
       end
 
       # Log status

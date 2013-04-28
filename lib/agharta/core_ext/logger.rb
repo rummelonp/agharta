@@ -2,11 +2,11 @@
 
 require 'logger'
 
-module Agharta
-  class SimpleFormatter < ::Logger::Formatter
+class Logger
+  class SimpleFormatter < Formatter
     def call(severity, timestamp, progname, msg)
       msg = msg.is_a?(String) ? msg : msg.inspect
       "#{msg}\n"
     end
-  end  
+  end
 end
