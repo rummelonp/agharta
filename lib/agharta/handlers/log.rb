@@ -3,7 +3,6 @@
 require 'logger'
 require 'agharta/configuration'
 require 'agharta/handleable'
-require 'agharta/simple_formatter'
 require 'agharta/status_formatter'
 
 module Agharta
