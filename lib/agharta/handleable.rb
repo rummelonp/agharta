@@ -2,7 +2,7 @@
 
 module Agharta
   # @abstract Inherit this class when to create handleable class
-  class Handleable
+  module Handleable
     # @param context [Agharta::Context]
     def initialize(context, *args, &block)
       @context = context

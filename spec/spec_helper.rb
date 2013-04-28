@@ -32,15 +32,20 @@ class DummyExecutable
   include Agharta::Hooks
 end
 
-class DummyHook < Agharta::Hookable
+class DummyHook
+  include Agharta::Hookable
+
   def call(status)
     invoke(status)
   end
 end
 
-class DummyHandler < Agharta::Handleable
+class DummyHandler
+  include Agharta::Handleable
+
   def initialize(context, *args, &block)
   end
+
   def call(status, options = {})
   end
 end

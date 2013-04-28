@@ -4,7 +4,9 @@ require 'agharta/hookable'
 
 module Agharta
   module Hooks
-    class Keyword < Hookable
+    class Keyword
+      include Hookable
+
       # @overload initialize(context, *includes, options = {})
       #   @param context [Agharta::Context]
       #   @param includes [Array<String>] Receive keywords

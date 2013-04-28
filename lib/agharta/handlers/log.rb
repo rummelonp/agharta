@@ -7,8 +7,9 @@ require 'agharta/status_formatter'
 
 module Agharta
   module Handlers
-    class Log < Handleable
+    class Log
       include Configuration
+      include Handleable
 
       # @overload initialize(log_name, options = {})
       #   @param log_name [string] Log file name

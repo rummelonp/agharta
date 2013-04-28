@@ -4,8 +4,10 @@ require 'agharta/handleable'
 
 module Agharta
   module Stores
-    class Fluent < Handleable
+    class Fluent
       Stores.register :fluent, self
+
+      include Handleable
 
       # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
       # @overload initialize(context, tag_prefix)

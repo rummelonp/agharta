@@ -10,10 +10,11 @@ require 'agharta/status_formatter'
 
 module Agharta
   module Notifies
-    class Prowl < Handleable
+    class Prowl
       Notifies.register :prowl, self
 
       include Configuration
+      include Handleable
 
       # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
       # @overload initialize(context, options = {})
