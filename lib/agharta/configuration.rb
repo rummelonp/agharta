@@ -4,6 +4,7 @@ require 'agharta/environment'
 
 module Agharta
   module Configuration
+    # @private
     OPTIONS_KEY = [
       :consumer_key,
       :consumer_secret,
@@ -11,12 +12,30 @@ module Agharta
       :oauth_token_secret,
     ].freeze
 
+    # @private
     attr_accessor *OPTIONS_KEY
 
+    # @return [Agharta::Environment]
     def env
       @env ||= Environment.instance
     end
 
+    # Set it to configuration
+    #
+    # @overload set(key, value)
+    #   Given key and value
+    #
+    #   @param key [Symbol, String]
+    #   @param value
+    #   @example
+    #     recipe.set(:consumer_key, 'consumer_key')
+    # @overload set(options)
+    #   Given hash
+    #
+    #   @param options [Hash]
+    #   @return [Hash]
+    #   @example
+    #     recipe.set({:consumer_key => 'consumer_key'})
     def set(*args)
       if args.first.is_a?(Hash)
         args.first.each do |key, value|
@@ -28,6 +47,9 @@ module Agharta
       end
     end
 
+    # Return current configuration
+    #
+    # @return [Hash]
     def options
       options = {}
       OPTIONS_KEY.each do |key|
@@ -36,6 +58,25 @@ module Agharta
       options
     end
 
+    # When not given args & credentials not set, call {#default_credentials}.
+    # When not given args & credentials have been set, call {#build_credentials}.
+    # When given args, call {#set_credentials}.
+    #
+    # @return [Hash]
+    # @overload credentials
+    #   Return current credentials configuration
+    #
+    #   @see #default_credentials
+    #   @see #build_credentials
+    #   @example
+    #      credentials = recipe.credentials
+    # @overload credentials(screen_name)
+    #   Set given user name credentials to configuration
+    #
+    #   @param screen_name [Symbol]
+    #   @see #set_credentials
+    #   @example
+    #      recipe.credentials(:mitukiii)
     def credentials(screen_name = nil)
       if screen_name.nil?
         if build_credentials.values.compact.empty?
@@ -48,6 +89,9 @@ module Agharta
       end
     end
 
+    # Return current credentials configuration
+    #
+    # @return [Hash]
     def build_credentials
       {
         :consumer_key       => consumer_key,
@@ -57,12 +101,20 @@ module Agharta
       }
     end
 
+    # Return default credentials configuration
+    #
+    # @return [Hash]
     def default_credentials
       users = env.config[:twitter] || {}
       screen_name = users[:default]
       clean_options(users[screen_name] || {})
     end
 
+    # Set given user name credentials to configuration.
+    # When given symbol :default, set default credentials to configuration.
+    #
+    # @param screen_name [Symbol]
+    # @return [Hash]
     def set_credentials(screen_name)
       set(
         if screen_name == :default

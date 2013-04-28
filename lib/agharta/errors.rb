@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 
 module Agharta
-  class ConfigurationError < StandardError
+  # Custom error class for rescuing from all Agharta errors
+  class AghartaError < StandardError
   end
 
-  class APIError < StandardError
+  # Raised when configuration is not enough
+  class ConfigurationError < AghartaError
+  end
+
+  # Raised when a some API returns the error
+  class APIError < AghartaError
   end
 end

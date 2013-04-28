@@ -14,31 +14,32 @@ unless ENV['CI']
         source.filename =~ /lib\/agharta\/notifies/ ||
         source.filename =~ /lib\/agharta\/stores/
     end
+    add_group 'Hooks',     'lib/agharta/hooks'
     add_group 'Extension', 'lib/agharta/core_ext'
   end
 end
 
-require 'agharta/recipe'
-require 'agharta/tasks'
+require 'agharta'
 require 'rspec'
 
 class DummyRecipe
-  include Agharta::Executable
-  include Agharta::Context
   include Agharta::Configuration
-  include Agharta::UserStream
+  include Agharta::Executable
+  include Agharta::Executes
 end
 
-class DummyStream < Agharta::UserStream::Client
+class DummyExecutable
+  include Agharta::Executable
+  include Agharta::Hooks
 end
 
-class DummyHook < Agharta::UserStream::Hooks::Hook
+class DummyHook < Agharta::Hookable
   def call(status)
     invoke(status)
   end
 end
 
-class DummyHandler
+class DummyHandler < Agharta::Handleable
   def initialize(context, *args, &block)
   end
   def call(status, options = {})

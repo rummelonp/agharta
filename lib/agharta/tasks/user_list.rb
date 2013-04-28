@@ -8,6 +8,7 @@ module Agharta
     class UserList < Thor::Group
       Tasks.register 'user:list', self
 
+      # @private
       def self.banner
         'agharta user:list'
       end

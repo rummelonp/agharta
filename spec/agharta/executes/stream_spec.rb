@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 
 require 'spec_helper'
 
-describe Agharta::UserStream::Stream do
+describe Agharta::Executes::Stream do
   before do
     @context = DummyRecipe.new
-    @stream = Agharta::UserStream::Stream.new(@context)
+    @stream = Agharta::Executes::Stream.new(@context)
   end
 
   describe '#track' do

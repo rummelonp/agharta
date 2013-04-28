@@ -19,4 +19,10 @@ describe Agharta::Context do
       @wan.name.should == 'wan'
     end
   end
+
+  describe '#current_user' do
+    it 'should raise NotImplementedError' do
+      expect { @wan.current_user }.to raise_error(NotImplementedError)
+    end
+  end
 end

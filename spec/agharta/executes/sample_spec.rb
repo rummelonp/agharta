@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 
 require 'spec_helper'
 
-describe Agharta::UserStream::Sample do
+describe Agharta::Executes::Sample do
   before do
     @context = DummyRecipe.new
-    @sample = Agharta::UserStream::Sample.new(@context)
+    @sample = Agharta::Executes::Sample.new(@context)
   end
 
   describe '#execute' do

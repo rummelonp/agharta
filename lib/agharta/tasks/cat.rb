@@ -8,6 +8,7 @@ module Agharta
     class Cat < Thor::Group
       Tasks.register :cat, self
 
+      # @private
       def self.banner
         'agharta cat [recipe]'
       end

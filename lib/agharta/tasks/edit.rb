@@ -8,6 +8,7 @@ module Agharta
     class Edit < Thor::Group
       Tasks.register :edit, self
 
+      # @private
       def self.banner
         'agharta edit [recipe]'
       end

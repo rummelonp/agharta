@@ -11,6 +11,7 @@ module Agharta
     class UserAdd < Thor::Group
       Tasks.register 'user:add', self
 
+      # @private
       def self.banner
         'agharta user:add'
       end
