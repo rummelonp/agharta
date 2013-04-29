@@ -17,6 +17,12 @@ describe Agharta::UserStream do
   end
 
   describe '#logger' do
+    before do
+      @logger = Logger.new($stdout)
+      Logger.should_receive(:new).with($stdout).and_return(@logger)
+      Logger.should_receive(:new).with(@stream.log_path).and_return(@logger)
+    end
+
     it 'should be a MultiLogger' do
       @stream.logger.should be_a Agharta::MultiLogger
     end
