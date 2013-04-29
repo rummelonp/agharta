@@ -10,10 +10,11 @@ require 'agharta/status_formatter'
 
 module Agharta
   module Notifies
-    class ImKayac < Handleable
+    class ImKayac
       Notifies.register :im_kayac, self
 
       include Configuration
+      include Handleable
 
       # @raise [Agharta::ConfigurationError] Error raised when configuration is not enough
       # @overload initialize(context, options = {})

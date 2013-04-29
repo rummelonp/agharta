@@ -5,7 +5,7 @@ require 'agharta/handlers'
 
 module Agharta
   # @abstract Inherit this class when to create hookable class
-  class Hookable
+  module Hookable
     include Context
     include Handlers
 

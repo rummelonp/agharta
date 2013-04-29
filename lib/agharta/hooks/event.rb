@@ -4,7 +4,9 @@ require 'agharta/hookable'
 
 module Agharta
   module Hooks
-    class Event < Hookable
+    class Event
+      include Hookable
+
       # Available event names
       EVENT_NAMES = [
         :reply,
