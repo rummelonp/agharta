@@ -44,8 +44,9 @@ module Agharta
       def call(status, options = {})
         data = StatusFormatter.call(status, options)
 
+        message = "#{data[:title]}: #{data[:message]}"
         params = {
-          :message => "#{data[:title]}: #{data[:message]}"
+          :message => message
         }
 
         if @secret_key
